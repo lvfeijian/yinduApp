@@ -1,0 +1,43 @@
+<template>
+  <div id="app">
+    <transition mode='out-in'>
+      <router-view></router-view>
+    </transition>
+    <main-tab-bar v-if="$route.meta.TabbarShow"/>
+  </div>
+</template>
+<script>
+import MainTabBar from '@/components/content/MainTabBar'
+export default {
+  name: 'App',
+  components:{
+    MainTabBar,
+  }
+}
+</script>
+
+<style>
+/* @import url('./assets/css/base.css'); */
+*{
+  margin: 0px;
+  padding: 0px;
+}
+body{
+  margin: 0;
+  padding: 0;
+  font-family: '微软雅黑';
+}
+a{
+  text-decoration-line: none;
+}
+/* .v-enter,
+{
+  opacity: 1;
+}
+.v-leave-to{
+  opacity: 0;
+} */
+.v-enter-active,.v-leave-active{
+  transition:all .3s ease;
+}
+</style>

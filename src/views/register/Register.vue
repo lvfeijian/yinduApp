@@ -1,0 +1,78 @@
+<!-- 注册页 -->
+<template>
+  <div class="register">
+    <div class="logo">
+        <img src="@/assets/img/login/logo.png" alt="">
+    </div>
+    <div class="title">REGISTER</div>
+    <input class="userInput" type="number" ref="phone" v-model="phone" @input="changeNumber" placeholder="PHONE NUMBER" maxlength="11">
+    <input class="pwdInput" type="password" ref="password" v-model="password" placeholder="INPUT PASSWORD" maxlength="18">
+    <input class="confirmPwdInput" type="password" v-model="confirmPassword" placeholder="CONFIRM PASSWORD" maxlength="18">
+    <input class="code" ref="code" type="text" v-model="code" placeholder="INVITATION CODE">
+    <div class="register_btn" @click="handleRegister">REGISTER</div>
+    <div class="switch" @click="goLink">REGISTERED ACCOUNT</div>
+    <div class="down_app">DOWNLOAD&nbsp;&nbsp;APP</div>
+  </div>
+</template>
+
+<script>
+import Vue from 'vue';
+import { Notify  } from 'vant';
+Vue.use(Notify);
+export default {
+  data () {
+    return {
+        phone: '',
+        password: '',
+        confirmPassword: '',
+        code: ''
+    }
+  },
+
+  components: {},
+
+  computed: {},
+
+  mounted() {},
+
+  methods: {
+    changeNumber(){
+      if(this.phone.length>11){
+        this.phone = this.phone.slice(0,11)
+      }
+    },
+    // 注册
+    handleRegister(){
+      if(this.phone.trim().length != 11){
+        Notify({ type: 'danger', message: '手机号码格式不对' });
+        this.$refs.phone.focus()
+        return
+      }
+      if(this.password.trim().length < 6){
+        Notify({ type: 'danger', message: '密码长度需要大于6位' });
+        this.$refs.password.focus()
+        return
+      }
+      if(this.confirmPassword != this.password){
+        Notify({ type: 'danger', message: '两次密码不一致' });
+        return
+      }
+      if(this.code.length == 0){
+        Notify({ type: 'danger', message: '请填写验证码' });
+        this.$refs.code.focus()
+        return
+      }
+
+    },
+    goLink(){
+      this.$router.push({
+        path: '/login'
+      })
+    }
+  }
+}
+
+</script>
+<style lang='less' scoped>
+  @import url('./register.less');
+</style>
