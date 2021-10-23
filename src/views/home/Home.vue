@@ -1,6 +1,6 @@
 <!-- Home -->
 <template>
-  <div>111
+  <div>
     首页111111111111111111
   </div>
 </template>
