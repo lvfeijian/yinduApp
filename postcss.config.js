@@ -13,8 +13,7 @@ module.exports = {
       mediaQuery: false, // 允许在媒体查询中转换`px`
       replace: true, //是否直接更换属性值，而不添加备用属性
       exclude: [
-        /RightBar/,
-        /gotop.vue/,
+        /node_modules/,
       ], //忽略某些文件夹下的文件或特定文件，例如 'node_modules' 下的文件
       landscape: false, //是否添加根据 landscapeWidth 生成的媒体查询条件 @media (orientation: landscape)
       landscapeUnit: 'vw', //横屏时使用的单位
