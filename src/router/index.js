@@ -97,7 +97,13 @@ const routes = [
 	  path: '/task',
 	  name: 'Task',
 	  component: () => import( '../views/task/Task'),
-	}
+	},
+    {
+        path: '/upgradeVip',
+        name: 'UpgradeVip',
+        component: () => import( '../views/upgradeVip/UpgradeVip'),
+    },
+    
    
 ]
 const router = new VueRouter({

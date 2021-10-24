@@ -33,7 +33,7 @@
 
 		methods: {
 			onClickLeft: function(){
-				console.log("返回");
+				this.$router.go(-1)
 			}
 		}
 	}

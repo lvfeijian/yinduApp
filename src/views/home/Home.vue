@@ -24,8 +24,8 @@
 		</div>
 		<!-- 列表项 -->
 		<div class="item-box">
-			<div class="item-list"  v-for="(item,index) in listData" :key="index" @click="onItemBanner">
-				<img :src="require('../../assets/img/home/' + item)"/>
+			<div class="item-list"  v-for="(item,index) in listData" :key="index" @click="onItemBanner(item.path)">
+				<img :src="require('../../assets/img/home/' + item.url)"/>
 			</div>
 		</div>
 		
@@ -48,13 +48,21 @@
 		data() {
 			return {
 				listData: [
-					"create-task.png",
-					"free-center.png",
-					"upgrade-vip.png"],
+					{
+						url: "create-task.png",
+						path: 'task'
+					},
+					{
+						url: "free-center.png",
+						path: 'free'
+					},
+					{
+						url: "upgrade-vip.png",
+						path: 'upgradeVip'
+					}
+				],
 				bannerImg: [
 					"banner.png",
-				    'https://img01.yzcdn.cn/vant/apple-1.jpg',
-				    'https://img01.yzcdn.cn/vant/apple-2.jpg',
 				],
 			};
 		},
@@ -75,7 +83,10 @@
 			/**
 			 * 列表点击
 			 */
-			onItemBanner: function(){
+			onItemBanner: function(path){
+				this.$router.push({
+					path
+				})
 				console.log("列表点击");
 			}
 		}
