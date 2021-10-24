@@ -24,25 +24,25 @@
       </div>
     </div>
     <div class="navbar">
-      <div class="item">
+      <div class="item" @click="golink('purchase')">
         <div class="icon">
           <img src="@/assets/img/mine/show_goumai_fill.png" alt="" />
         </div>
         <p>PURCHASE</p>
       </div>
-      <div class="item">
+      <div class="item" @click="golink('team')">
         <div class="icon">
           <img src="@/assets/img/mine/tuandui.png" alt="" />
         </div>
         <p>TEAM</p>
       </div>
-      <div class="item">
+      <div class="item" @click="golink('profit')">
         <div class="icon">
           <img src="@/assets/img/mine/tixian.png" alt="" />
         </div>
         <p>PROFIT</p>
       </div>
-      <div class="item">
+      <div class="item" @click="golink('wallet')">
         <div class="icon">
           <img src="@/assets/img/mine/tuandui.png" alt="" />
         </div>
@@ -50,7 +50,7 @@
       </div>
     </div>
     <div class="list">
-      <div class="list_item">
+      <div class="list_item" @click="golink('purchase')">
         <img class="icon" src="../../assets/img/mine/goumaicantuan.png" alt="" />
         <div class="list_name">SUBORDINATE PURCHASE</div>
         <img class="jiantou" src="../../assets/img/mine/goumaicantuan.png" alt="" />
@@ -100,7 +100,13 @@
     mounted() {
     },
 
-    methods: {}
+    methods: {
+      golink(url){
+        this.$router.push({
+          path: url
+        })
+      }
+    }
   }
 
 </script>

@@ -15,6 +15,7 @@
     width: 100vw;
     height: 159px;
     background: #2B2A28;
+    margin-top: -1px;
   }
   .card{
     width: calc(100vw - 34px);
@@ -57,11 +58,12 @@
       font-size: 12px;
       margin-right: 10px;
       width: 220px;
-      margin-top: 17px;
       position: relative;
-      div{
-        margin-top: 5px;
-      }
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-top: 19px;
+      margin-bottom: 19px;
       .name{
         font-size: 17px;
       }
@@ -128,9 +130,6 @@
         width: 16px;
         margin-left: 13px;
         margin-right: 7px;
-      }
-      .list_name{
-
       }
       .jiantou{
         position: absolute;

@@ -54,7 +54,39 @@ const routes = [
         component:() => import('../views/mine/Mine'),
         meta: {
             TabbarShow: true, // 是否显示底部tabar（导航条）
-        }
+        },
+    },
+    {
+        path:'/purchase',
+        name: 'Purchase',
+        component:() => import('../views/purchase/Purchase'),
+        meta: {
+            TabbarShow: false, // 是否显示底部tabar（导航条）
+        },
+    },
+    {
+        path:'/team',
+        name: 'Team',
+        component:() => import('../views/team/Team'),
+        meta: {
+            TabbarShow: false, // 是否显示底部tabar（导航条）
+        },
+    },
+    {
+        path:'/profit',
+        name: 'Profit',
+        component:() => import('../views/profit/Profit'),
+        meta: {
+            TabbarShow: false, // 是否显示底部tabar（导航条）
+        },
+    },
+    {
+        path:'/wallet',
+        name: 'Wallet',
+        component:() => import('../views/wallet/Wallet'),
+        meta: {
+            TabbarShow: false, // 是否显示底部tabar（导航条）
+        },
     },
    
 ]
