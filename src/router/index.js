@@ -30,7 +30,7 @@ const routes = [
         component:Home,
         meta: {
             TabbarShow: true,
-        }
+        },
     },
     {
         path:'/invite',
@@ -88,6 +88,16 @@ const routes = [
             TabbarShow: false, // 是否显示底部tabar（导航条）
         },
     },
+	{
+	  path: '/free',
+	  name: 'Free',
+	  component: () => import( '../views/free/Free'),
+	},
+	{
+	  path: '/task',
+	  name: 'Task',
+	  component: () => import( '../views/task/Task'),
+	}
    
 ]
 const router = new VueRouter({
