@@ -4,15 +4,15 @@
             <img src="@/assets/img/5.png" alt="" slot="item-icon">
             <img src="@/assets/img/1.png" alt="" slot="item-icon-active">
         </tab-bar-item>
-        <tab-bar-item path="/categroy">
+        <tab-bar-item path="/invite">
             <img src="@/assets/img/6.png" alt="" slot="item-icon">
             <img src="@/assets/img/2.png" alt="" slot="item-icon-active">
         </tab-bar-item>
-        <tab-bar-item path="/cart">
+        <tab-bar-item path="/introduce">
             <img src="@/assets/img/7.png" alt="" slot="item-icon">
-            <img src="@/assets/img/3.png" alt="" slot="item-icon-active" class="one">
+            <img src="@/assets/img/3.png" alt="" slot="item-icon-active">
         </tab-bar-item>
-        <tab-bar-item path="/login">
+        <tab-bar-item path="/mine">
             <img src="@/assets/img/8.png" alt="" slot="item-icon">
             <img src="@/assets/img/4.png" alt="" slot="item-icon-active">
         </tab-bar-item>
@@ -33,10 +33,5 @@ export default {
 <style scoped>
 img{
     vertical-align: center;
-}
-.one{
-    width: 25px;
-    height: 20px;
-    margin-top: 10px;
 }
 </style>

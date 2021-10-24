@@ -45,7 +45,9 @@ export default {
         Notify({ type: 'danger', message: '密码长度需要大于6位' });
         return
       }
-
+      this.$router.push({
+        path: 'home'
+      })
     },
     goLink(){
       this.$router.push({
