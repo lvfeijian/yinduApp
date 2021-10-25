@@ -3,7 +3,7 @@
   <div class="profit">
     <div class="header">
       <van-nav-bar
-        title="TEAM"
+        title="PROFIT"
         left-arrow
         @click-left="onClickLeft"
       />

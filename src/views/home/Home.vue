@@ -18,7 +18,7 @@
 		<div class="home-tip">
 			<van-notice-bar left-icon="volume-o" :scrollable="false">
 				<van-swipe vertical class="notice-swipe" :autoplay="5000" :show-indicators="false">
-					<van-swipe-item class="swipe-item" v-for="(item,index) in 3" :key="index">Notice {{index}}</van-swipe-item>
+					<van-swipe-item class="swipe-item" v-for="(item,index) in 3" :key="index" @click="handleNotice">Notice {{index}}</van-swipe-item>
 				</van-swipe>
 			</van-notice-bar>
 		</div>
@@ -88,6 +88,12 @@
 					path
 				})
 				console.log("列表点击");
+			},
+			// 公告点击
+			handleNotice(e){
+				this.$router.push({
+					path: 'announcementDetail'
+				})
 			}
 		}
 	}
