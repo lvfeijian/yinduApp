@@ -103,7 +103,26 @@ const routes = [
         name: 'UpgradeVip',
         component: () => import( '../views/upgradeVip/UpgradeVip'),
     },
-    
+    {
+        path: '/announcement',
+        name: 'Announcement',
+        component: () => import( '../views/announcement/Announcement'),
+    },
+    {
+        path: '/announcementDetail',
+        name: 'AnnouncementDetail',
+        component: () => import( '../views/announcementDetail/AnnouncementDetail'),
+    },
+    {
+        path: '/appDownload',
+        name: 'AppDownload',
+        component: () => import( '../views/appDownload/AppDownload'),
+    },
+    {
+        path: '/modifyPassword',
+        name: 'ModifyPassword',
+        component: () => import( '../views/modifyPassword/ModifyPassword'),
+    },
    
 ]
 const router = new VueRouter({

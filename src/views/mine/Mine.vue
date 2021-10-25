@@ -55,11 +55,11 @@
         <div class="list_name">SUBORDINATE PURCHASE</div>
         <img class="jiantou" src="../../assets/img/mine/goumaicantuan.png" alt="" />
       </div>
-      <div class="list_item">
+      <div class="list_item" @click="golink('announcement')">
         <img class="icon" src="../../assets/img/mine/goumaicantuan.png" alt="" />
         <div class="list_name">PLATFORM ANNOUNCEMENT</div>
       </div>
-      <div class="list_item">
+      <div class="list_item" @click="golink('appDownload')">
         <img class="icon" src="../../assets/img/mine/xiazai.png" alt="" />
         <div class="list_name">APP DOWNLOAD</div>
       </div>
@@ -67,7 +67,7 @@
         <img class="icon" src="../../assets/img/mine/zaixiankefu.png" alt="" />
         <div class="list_name">ONLINE SERVICE</div>
       </div>
-      <div class="list_item">
+      <div class="list_item" @click="golink('modifyPassword')">
         <img class="icon" src="../../assets/img/mine/xiugaimima.png" alt="" />
         <div class="list_name">CHANGE PASSWORD</div>
       </div>
