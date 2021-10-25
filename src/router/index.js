@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 const routes = [
     {
         path:'',
-        redirect:'/mine'
+        redirect:'/member'
     },
     {
         path:'/login',
@@ -97,6 +97,11 @@ const routes = [
 	  path: '/task',
 	  name: 'Task',
 	  component: () => import( '../views/task/Task'),
+	},
+	{
+	  path: '/member',
+	  name: 'Member',
+	  component: () => import( '../views/member/Member'),
 	},
     {
         path: '/upgradeVip',
