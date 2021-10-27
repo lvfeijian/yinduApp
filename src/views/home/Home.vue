@@ -11,7 +11,6 @@
 					  <img v-lazy="require('../../assets/img/home/' + item)" />
 				  </van-swipe-item>
 				</van-swipe>
-
 			</div>
 		</div>
 		<!-- 提示轮播 -->
