@@ -60,37 +60,37 @@
 						img: "silver.png",
 						title: "SILVER VIP",
 						price: "₹600",
-						select: "false"
+						select: true
 					},
 					{
 						img: "gold.png",
 						title: "GOLD VIP",
 						price: "₹2600",
-						select: "false"
+						select: false
 					},
 					{
 						img: "diamond.png",
 						title: "DIAMOND VIP",
 						price: "₹10000",
-						select: "false"
+						select: false
 					},
 					{
 						img: "golden.png",
 						title: "GOLDEN DIAMOND VIP",
 						price: "₹25000",
-						select: "false"
+						select: false
 					},
 					{
 						img: "black.png",
 						title: "BLACK DIAMOND VIP",
 						price: "₹50000",
-						select: "false"
+						select: false
 					},
 					{
 						img: "grown.png",
 						title: "GROWN VIP",
 						price: "₹100000",
-						select: "false"
+						select: false
 					},
 				],
 				show: false, // 弹窗显示
