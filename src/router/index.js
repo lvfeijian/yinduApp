@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 const routes = [
     {
         path:'',
-        redirect:'/member'
+        redirect:'/login'
     },
     {
         path:'/login',
@@ -103,11 +103,6 @@ const routes = [
 	  name: 'Member',
 	  component: () => import( '../views/member/Member'),
 	},
-    {
-        path: '/upgradeVip',
-        name: 'UpgradeVip',
-        component: () => import( '../views/upgradeVip/UpgradeVip'),
-    },
     {
         path: '/announcement',
         name: 'Announcement',

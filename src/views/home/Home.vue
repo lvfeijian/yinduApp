@@ -58,7 +58,7 @@
 					},
 					{
 						url: "upgrade-vip.png",
-						path: 'upgradeVip'
+						path: 'member'
 					}
 				],
 				bannerImg: [
