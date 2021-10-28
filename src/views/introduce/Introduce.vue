@@ -33,5 +33,5 @@
 
 </script>
 <style lang='less' scoped>
-  @import url('./Introduce.less');
+  @import url('./introduce.less');
 </style>
