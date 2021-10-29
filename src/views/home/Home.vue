@@ -76,7 +76,7 @@
 				if(res.code == 1){
 					this.bannerImg = res.data
 				}
-				console.log(res);
+				console.log(res);  
 			})
 		},
 
