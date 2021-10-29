@@ -3,15 +3,18 @@
   <div class="introduce">
   	<van-nav-bar title="INTRODUCE"/>
   	<div class="introduce-bg">
-  		<img src="../../assets/img/invite/invitation.png" alt="">
+  		<img src="../../assets/img/invite/bg.jpg" alt="">
 		<div class="title">Company project introduction</div>
-		<div class="container">555222222222222222222222222222222222222222222222222222222222.。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。</div>
+		<div class="container" v-html>{{company}}</div>
   	</div>
   </div>
 </template>
 
 <script>
 	import Vue from 'vue';
+  import {
+    getCompanyIntro
+  } from '@/network/introduct'
 	import {
 		NavBar,
 	} from 'vant';
@@ -19,14 +22,21 @@
   export default {
     data() {
       return {
-      };
+        company: 'qqq'
+      }
     },
 
     components: {},
 
     computed: {},
-
-    mounted() { },
+    created(){
+      getCompanyIntro().then(res => {
+        if(res.code == 1){
+          this.company = res.data.company
+        }
+      })
+    },
+    mounted() {},
 
     methods: {}
   }

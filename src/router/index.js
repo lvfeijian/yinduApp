@@ -3,12 +3,19 @@ import VueRouter from 'vue-router'
 const Home = () => import('../views/home/Home')
 const Login = () => import('../views/login/Login')
 const Register = () => import('../views/register/Register')
+
+//解决Vue中重复点击相同路由控制台报错问题
+const routerPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+    return routerPush.call(this, location).catch(error => error)
+}
+
 Vue.use(VueRouter)
 
 const routes = [
     {
-        path:'',
-        redirect:'/invite'
+        path:'*',
+        redirect:'/login'
     },
     {
         path:'/login',
@@ -129,4 +136,13 @@ const router = new VueRouter({
     routes,
     mode:'history'
 })
+//路由导航守卫
+// router.beforeEach((to,from,next) => {
+//     if(to.path === '/login' || to.path === '/404') return next()
+//     const token = window.sessionStorage.getItem('token')
+//     console.log(token)
+//     if(!token)
+//     return next('/login')
+//     next()
+// })
 export default router

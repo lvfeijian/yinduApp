@@ -7,8 +7,8 @@
 			<!-- 轮播图 -->
 			<div class="home-banner">
 				<van-swipe class="my-swipe" :autoplay="3000" :show-indicators="false">
-				  <van-swipe-item v-for="(item,index) in bannerImg" :key="index" @click="onBanner">
-					  <img v-lazy="require('../../assets/img/home/' + item)" />
+				  <van-swipe-item v-for="(item,index) in bannerImg" :key="index" @click="onBanner(item.url)">
+						<img :src="item.logo" alt="" />
 				  </van-swipe-item>
 				</van-swipe>
 			</div>
@@ -33,6 +33,9 @@
 
 <script>
 	import Vue from 'vue';
+	import {
+		getSwiperList
+	} from '@/network/home'
 	import {
 		NoticeBar,
 		Swipe,
@@ -60,9 +63,7 @@
 						path: 'member'
 					}
 				],
-				bannerImg: [
-					"banner.png",
-				],
+				bannerImg: [],
 			};
 		},
 
@@ -70,14 +71,21 @@
 
 		computed: {},
 
-		mounted() {},
+		mounted() {
+			getSwiperList().then(res => {
+				if(res.code == 1){
+					this.bannerImg = res.data
+				}
+				console.log(res);
+			})
+		},
 
 		methods: {
 			/**
 			 * 轮播图点击
 			 */
-			onBanner: function(){
-				console.log("轮播");
+			onBanner: function(url){
+				window.location.href = url
 			},
 			/**
 			 * 列表点击

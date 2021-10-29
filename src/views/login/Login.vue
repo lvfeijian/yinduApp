@@ -14,6 +14,9 @@
 
 <script>
 import Vue from 'vue';
+import {
+  userLogin
+} from '@/network/login'
 import { Notify  } from 'vant';
 Vue.use(Notify);
 export default {
@@ -45,9 +48,18 @@ export default {
         Notify({ type: 'danger', message: '密码长度需要大于6位' });
         return
       }
-      this.$router.push({
-        path: 'home'
+      userLogin({
+        phone: this.phone,
+        password: this.password
+      }).then(res => {
+        if(res.code == 1){
+          sessionStorage.setItem('token', res.data.token)
+          this.$router.push('/home')
+        }
       })
+      // this.$router.push({
+      //   path: 'home'
+      // })
     },
     goLink(){
       this.$router.push({

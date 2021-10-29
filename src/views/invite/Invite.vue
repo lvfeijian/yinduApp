@@ -3,7 +3,7 @@
   <div class="introduce">
   	<van-nav-bar title="INVITATION"/>
   	<div class="introduce-bg">
-  		<!-- <img src="../../assets/img/invite/invitation.png" alt=""> -->
+  		<img src="../../assets/img/invite/bg.jpg" alt="">
 		<!-- <div class="title">Buy members to watch ads to make money</div>
 		<div class="container">5552222222222222222222222222</div> -->
 		<div class="container-box">

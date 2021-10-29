@@ -1,22 +1,9 @@
-import {request} from './request'
+import { request } from './request'
 
-export function getHomeData(){
+// 轮播图接口
+export function getSwiperList(){
     return request({
-        url: '/home/multidata'
+        url: 'api/ads/list',
+        method: 'get'
     })
 }
-export function getHomeGoods(type,page=1){
-    return request({
-        url:'/home/data',
-        params:{
-            type,
-            page
-        }
-    })
-}
-// export class Goods{
-//     constructor(res){
-//         this.list = res.data.data.banner.list
-//         // this.title = res.title
-//     }
-// }

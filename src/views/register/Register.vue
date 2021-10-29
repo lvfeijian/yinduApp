@@ -17,6 +17,9 @@
 
 <script>
 import Vue from 'vue';
+import {
+  userRegister
+} from '@/network/register'
 import { Notify  } from 'vant';
 Vue.use(Notify);
 export default {
@@ -62,7 +65,16 @@ export default {
         this.$refs.code.focus()
         return
       }
-
+      userRegister({
+        phone: this.phone,
+        password: this.password,
+        repassword: this.confirmPassword,
+        code: this.code
+      }).then(res => {
+        if(res.code == 1){
+          this.$router.push('/login')
+        }
+      })
     },
     goLink(){
       this.$router.push({
