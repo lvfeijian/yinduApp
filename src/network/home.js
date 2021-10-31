@@ -25,3 +25,30 @@ export function noticeDetailApi(params){
     })
 }
 
+// vip会员列表接口
+export function vipListApi(){
+    return request({
+        url: 'api/vip/list',
+        method: 'get'
+    })
+}
+
+// 开通vip发起支付口
+export function vipPayApi(params){
+    return request({
+        url: 'api/vip/pay',
+        method: 'get',
+        params
+    })
+}
+
+// 订单是否支付接口
+export function vipOrderApi(params){
+    return request({
+        url: 'api/vip/order',
+        method: 'get',
+        params
+    })
+}
+
+

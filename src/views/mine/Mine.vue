@@ -16,8 +16,8 @@
       <div class="right">
         <div class="name">{{userInfo.name == '' ? userInfo.phone.replace(userInfo.phone.substring(3,7), "****") : userInfo.name}}</div>
         <div class="code">
-          <div class="text">INVITATION CODE：239987</div>
-          <div class="copy">COPY</div>
+          <div class="text">INVITATION CODE：{{userInfo.code}}</div>
+          <div class="copy" @click="handleCopy">COPY</div>
         </div>
         <div class="level">VIP LEVEL：{{userInfo.vip_level}}</div>
         <div class="time">THE REMAINING NUMBER OF DAYS：{{userInfo.remain_day}} DAY</div>
@@ -87,6 +87,9 @@
 </template>
 
 <script>
+  import Vue from 'vue';
+  import { Dialog } from 'vant';
+
   import {
     getUserInfo,
     getBankCard
@@ -103,7 +106,7 @@
 
     computed: {},
     created(){
-      this.handleUserInfo()
+      // this.handleUserInfo()
       getBankCard().then(res => {
         if(res.code == 1){
           this.bankCardInfo = res.data
@@ -111,17 +114,17 @@
       })
     },
     mounted() {
-      
+      this.userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
     },
 
     methods: {
-      handleUserInfo(){
-        getUserInfo().then(res => {
-          if(res.code == 1){
-            this.userInfo = res.data
-          }
-        })
-      },
+      // handleUserInfo(){
+      //   getUserInfo().then(res => {
+      //     if(res.code == 1){
+      //       this.userInfo = res.data
+      //     }
+      //   })
+      // },
       golink(url){
         let path = {
           path: url,
@@ -156,7 +159,21 @@
       exitSystem(){
         window.sessionStorage.removeItem("token");
         this.$router.push('login')
-      }
+      },
+      handleCopy(){
+        this.copy(this.userInfo.code)
+      },
+      copy(data) {
+        let OrderNumber = data;
+        let newInput = document.createElement("input");
+        newInput.value = OrderNumber;
+        document.body.appendChild(newInput);
+        newInput.select();
+        document.execCommand("Copy");
+        newInput.remove();
+        Dialog({ message: '复制成功' });
+      },
+
     }
   }
 

@@ -90,7 +90,7 @@
 			font-weight: 600;
 			color: #DEBB81 ;
 			background-color: #2B2A28;
-			line-height: 25px;
+			line-height: 23px;
 			text-align: center;
 			&.active{
 				background-color: #DEBB81;
@@ -108,23 +108,16 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-	
-		
-		.pay-title{
-			width: 29px;
-			height: 22px;
-			font-size: 17px;
-			font-family: Roboto-Regular, Roboto;
-			font-weight: 400;
-			color: #DEBB81;
-			line-height: 22px;
+		font-size: 50px;
+		font-size: 17px;
+		color: #DEBB81;
+
+		&.active{
+			background-color: #DEBB81;
+			color: #2B2A28;
 		}
 	}
 	
-	.pay-btn:hover{
-		background-color: #DEBB81;
-		
-	}
 	.pay-title:hover{
 		color: #2B2A28;
 	}
@@ -200,9 +193,10 @@
 		border: 1px solid #2B2A28;
 		line-height: 42px;
 		text-align: center;
+		&.active{
+			background-color: #2B2A28;
+			color:#DEBB81  ;
+		}
 	}
-	.pay-btntwo:hover{
-		background-color: #2B2A28;
-		color:#DEBB81  ;
-	}
+	
 }

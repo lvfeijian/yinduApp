@@ -68,20 +68,11 @@ import {
           limit: 20
         }).then(res => {
           if(res.code == 1){
-            // this.retailList.push(res.data)
-            for (let i = 0; i < 20; i++) {
-              this.retailList.push({
-                "name": "hehe",
-                "level": 1,
-                "amount": "20.00",
-                "vip_level": "GOLD",
-                "create_time": "2021-10-29 17:05:02"
-              });
-            }
+            this.retailList.push(...res.data)
             this.page+=1
             this.loading = false;
             // 数据全部加载完成
-            if (this.retailList.length >= 400) {
+            if (res.data.length < 20) {
               this.finished = true;
             }
           }

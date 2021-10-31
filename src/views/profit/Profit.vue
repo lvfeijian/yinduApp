@@ -76,19 +76,11 @@ import {
           limit: 20
         }).then(res => {
           if(res.code == 1){
-            // this.earningList.push(res.data)
-            for (let i = 0; i < 20; i++) {
-              this.earningList.push({
-                "id": 1,
-                "task_name": "ONE", // 任务名称
-                "create_time": "2021-10-28 16:50:36", // 时间
-                "amount": "1.00" // 收益
-              });
-            }
+            this.earningList.push(...res.data)
             this.page+=1
             this.loading = false;
             // 数据全部加载完成
-            if (this.earningList.length >= 400) {
+            if (res.data.length < 20) {
               this.finished = true;
             }
           }

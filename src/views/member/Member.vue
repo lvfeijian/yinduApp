@@ -12,14 +12,14 @@
 			</div>
 			<!-- 积分版列表 -->
 			<div class="score-item" v-for="(item,index) in vipList" :key="index">
-				<img :src="require('../../assets/img/home/' + item.img)" />
-				<div class="score-title">{{item.title}}</div>
-				<div class="score-btn" :class="{'active':item.select == true}" @click="onItemList(item)">
-					{{item.price}}
+				<img :src="require('../../assets/img/home/' + Number(index*1+1) + '.png')" />
+				<div class="score-title">{{item.name}}</div>
+				<div class="score-btn" :class="item.select ? 'active' : ''" @click="onItemList(index)">
+					₹{{item.amount}}
 				</div>
 			</div>
-			<div class="pay-btn" @click="onPayBtn()">
-				<div class="pay-title">PAY</div>
+			<div class="pay-btn" :class="currentIndex!=null ? 'active' : ''" @click="onPayBtn()">
+				PAY
 			</div>
 		</div>
 		<van-popup v-model="show" round position="bottom" :style="{ height: '33%' }">
@@ -38,101 +38,129 @@
 			</div>
 
 		</van-popup>
+		<Dialog @close="doClose" @handleBtn="handleBtn" :isShow="isShowDialog" :type="type" :btnText="btnText">
+      {{message}}
+    </Dialog>
 	</div>
 </template>
 
 <script>
 	import Vue from 'vue';
+	import Dialog from '@/components/common/dialog/Dialog'
 	import {
 		NavBar,
-		Dialog,
 		Popup,
-		Icon
+		Icon,
+		Notify
 	} from 'vant';
 	Vue.use(NavBar);
-	Vue.use(Dialog);
 	Vue.use(Popup);
 	Vue.use(Icon);
+	Vue.use(Notify);
+	import {
+		vipListApi,
+		vipPayApi,
+		vipOrderApi
+	} from '@/network/home'
 	export default {
 		data() {
 			return {
-				vipList: [{
-						img: "silver.png",
-						title: "SILVER VIP",
-						price: "₹600",
-						select: true
-					},
-					{
-						img: "gold.png",
-						title: "GOLD VIP",
-						price: "₹2600",
-						select: false
-					},
-					{
-						img: "diamond.png",
-						title: "DIAMOND VIP",
-						price: "₹10000",
-						select: false
-					},
-					{
-						img: "golden.png",
-						title: "GOLDEN DIAMOND VIP",
-						price: "₹25000",
-						select: false
-					},
-					{
-						img: "black.png",
-						title: "BLACK DIAMOND VIP",
-						price: "₹50000",
-						select: false
-					},
-					{
-						img: "grown.png",
-						title: "GROWN VIP",
-						price: "₹100000",
-						select: false
-					},
-				],
+				vipList: null,
+				currentIndex: null, // 当前选中的下标
 				show: false, // 弹窗显示
 				showIcon: false, // 图标选中
+				isShowDialog: false,
+				type: 1,
+				message: '',
+				btnText: ''
 			};
 		},
 
-		components: {},
+		components: {
+			Dialog
+		},
 
 		computed: {},
-
-		mounted() {},
+		created(){
+			vipListApi().then(res => {
+				if(res.code == 1){
+					res.data.map(item => {
+						item.select = false
+					})
+					this.vipList = res.data
+				}
+			})
+		},
+		mounted() {
+			if(window.localStorage.getItem('order_sn')){
+				vipOrderApi({
+					order_sn: window.localStorage.getItem('order_sn')
+				}).then(res => {
+					window.localStorage.removeItem('order_sn')
+					if(res.code == 1){
+						if(res.data.pay_status == 1){
+							this.isShowDialog = true
+							this.message = 'PAYMENT SUCCESSFUL!'
+							this.type = 1
+							this.btnText = 'ok'
+						} else if(res.data.pay_status == 0){
+							this.isShowDialog = true
+							this.message = 'PAYMENT FAILED!'
+							this.type = 2
+							this.btnText = 'PLEASE REPAY'
+						}
+					}
+				})
+			}
+		},
 
 		methods: {
 			onClickLeft: function() {
-				this.$router.go(-1)
+				this.$router.push('/home')
 			},
 
 			/**
 			 * 支付设置
 			 */
-			onItemList: function(item) {
-				// this.show = true;
-				item.select = true
-				if(item.select){
-					item.select = false
-				}else{
-					item.select = true
-				}
+			onItemList: function(index) {
+				this.currentIndex = index
+				this.vipList.map((item, key) => {
+					if(key == index) {
+						item.select = true
+					} else {
+						item.select = false
+					}
+				})
 			},
 			/**
 			 * 升级会员支付
 			 */
 			onPayBtn: function() {
-				Dialog.alert({
-					title: '标题',
-					width: 264,
-					message: '弹窗内容',
-					theme: 'round-button',
-				}).then(() => {
-					// on close
-				});
+				if(this.currentIndex == null){
+					Notify({ type: 'warning', message: 'Please select member level' });
+					return
+				}
+				let id = this.vipList[this.currentIndex].id
+				let url = window.location.host + '/member'
+				vipPayApi({
+					id,
+					callback_url: url
+				}).then(res => {
+					if(res.code == 1){
+						window.location.href = res.data.url
+						window.localStorage.setItem('order_sn', res.data.order_sn)
+					}
+				})
+			},
+			doClose(){
+				this.isShowDialog = false
+			},
+			handleBtn(){
+				if(this.message == 'PAYMENT SUCCESSFUL!'){
+					this.$router.push('/myLevel')
+				} else {
+					this.isShowDialog = false
+				}
 			},
 			/**
 			 * 图标选中

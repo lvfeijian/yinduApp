@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <transition mode='out-in'>
-      <router-view></router-view>
-    </transition>
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
     <main-tab-bar v-if="$route.meta.TabbarShow"/>
   </div>
 </template>

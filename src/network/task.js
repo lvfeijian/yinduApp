@@ -1,9 +1,19 @@
 import { request } from './request'
 
-// 任务中心接口
+// vip任务列表
 export function getTaskList(){
     return request({
         url: 'api/task/vipList',
         method: 'get'
     })
 }
+
+// 任务详细接口
+export function taskDetailApi(params){
+    return request({
+        url: 'api/task/detail',
+        method: 'get',
+        params
+    })
+}
+

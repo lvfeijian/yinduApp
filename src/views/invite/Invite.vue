@@ -4,44 +4,71 @@
   	<van-nav-bar title="INVITATION"/>
   	<div class="introduce-bg">
   		<img src="../../assets/img/invite/bg.jpg" alt="">
-		<!-- <div class="title">Buy members to watch ads to make money</div>
-		<div class="container">5552222222222222222222222222</div> -->
-		<div class="container-box">
-			<div class="container-text">
-				<div class="container-icon">1</div>
-				<div class="container-title">
-					Buy members to watch ads to make money
-				</div>
-			</div>
-			<div class="table">
-				<div class="table-flex">
-					<div class="table-row"v-for="(item,index) in 7" :key="index">
-						<div class="one">Membership level</div>
-						<div class="two">Price</div>
-						<div class="three">Revenue per ad view</div>
+			<div class="container-box">
+				<div class="container-text one">
+					<div class="container-icon">1</div>
+					<div class="container-title">
+						Buy members to watch ads to make money
 					</div>
 				</div>
-				<div class="table-colum">Up to 5 views per day</div>
-			</div>
-			<div class="container-text">
-				<div class="container-icon">2</div>
-				<div class="container-title">
-					Invite friends to register to buy members, friends can get 10% commission for buying members
+				<table>
+					<tr>
+						<td width="30%">Membership level</td>
+						<td width="16%">Price</td>
+						<td width="35%">Revenue per ad view</td>
+						<td width="16%" rowspan="7">Up to 5<br> views <br>per day</td>
+					</tr>
+					<tr>
+						<td>Copper</td>
+						<td>600</td>
+						<td>4.8</td>
+					</tr>
+					<tr>
+						<td>Silver</td>
+						<td>2600</td>
+						<td>21</td>
+					</tr>
+					<tr>
+						<td>Gold</td>
+						<td>10000</td>
+						<td>86</td>
+					</tr>
+					<tr>
+						<td>Brick</td>
+						<td>25000</td>
+						<td>242</td>
+					</tr>
+					<tr>
+						<td>Gold bricks</td>
+						<td>50000</td>
+						<td>533</td>
+					</tr>
+					<tr>
+						<td>Crown</td>
+						<td>100000</td>
+						<td>1333</td>
+					</tr>
+				</table>
+				<div class="container-text">
+					<div class="container-icon">2</div>
+					<div class="container-title">
+						Invite friends to register to buy members, friends can get 10% commission for buying members
+					</div>
 				</div>
-			</div>
-			<div class="container-text">
-				<div class="container-icon">3</div>
-				<div class="container-title">
-					Your invited friend invites his friend to register to purchase membership, and you will receive 3% of the membership purchase commission.
+				<div class="container-text">
+					<div class="container-icon">3</div>
+					<div class="container-title">
+						Your invited friend invites his friend to register to purchase membership, and you will receive 3% of the membership purchase commission.
+					</div>
 				</div>
-			</div>
-			<div class="container-text">
-				<div class="container-icon">4</div>
-				<div class="container-title">
-					Invite to register to make money, watch ads to make money, you can get up to 4 rewards
+				<div class="container-text">
+					<div class="container-icon">4</div>
+					<div class="container-title">
+						Invite to register to make money, watch ads to make money, you can get up to 4 rewards
+					</div>
 				</div>
+				<div class="btn" @click="handleCopy">COPY</div>
 			</div>
-		</div>
 		
 		
   	</div>
@@ -50,6 +77,7 @@
 
 <script>
 	import Vue from 'vue';
+  import { Dialog } from 'vant';
 	import {
 		NavBar,
 	} from 'vant';
@@ -66,7 +94,23 @@
 
     mounted() { },
 
-    methods: {}
+    methods: {
+			handleCopy(){
+				let userInfo = JSON.parse(localStorage.getItem('userInfo'))
+				let inviteUrl = window.location.host + '/register?code=' + userInfo.code
+        this.copy(inviteUrl)
+      },
+      copy(data) {
+        let OrderNumber = data;
+        let newInput = document.createElement("input");
+        newInput.value = OrderNumber;
+        document.body.appendChild(newInput);
+        newInput.select();
+        document.execCommand("Copy");
+        newInput.remove();
+        Dialog({ message: '复制成功' });
+      },
+		}
   }
 
 </script>

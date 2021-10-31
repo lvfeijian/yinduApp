@@ -38,6 +38,9 @@
 		noticeListApi
 	} from '@/network/home'
 	import {
+    getUserInfo
+  } from '@/network/mine'
+	import {
 		NoticeBar,
 		Swipe,
 		SwipeItem ,
@@ -77,6 +80,11 @@
 			getSwiperList().then(res => {
 				if(res.code == 1){
 					this.bannerImg = res.data
+				}
+			})
+			getUserInfo().then(res => {
+				if(res.code == 1){
+					localStorage.setItem('userInfo',JSON.stringify(res.data))
 				}
 			})
 		},

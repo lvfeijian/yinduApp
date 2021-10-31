@@ -20,7 +20,7 @@ import Vue from 'vue';
 import {
   userRegister
 } from '@/network/register'
-import { Notify  } from 'vant';
+import { Notify } from 'vant';
 Vue.use(Notify);
 export default {
   data () {
@@ -35,8 +35,11 @@ export default {
   components: {},
 
   computed: {},
-
-  mounted() {},
+  created(){
+    this.code = this.$route.query.code
+  },
+  mounted() {
+  },
 
   methods: {
     changeNumber(){

@@ -90,24 +90,18 @@ import {
           limit: 20
         }).then(res => {
           if(res.code == 1){
-            // this.teamList.push(res.data)
-            for (let i = 0; i < 20; i++) {
-              this.teamList.push({
-                "vip_level": "FREE",
-                "account": "13560404297",
-                "name": "lfj"
-              });
-            }
+            this.teamList.push(...res.data)
+            
             this.page+=1
             this.loading = false;
             // 数据全部加载完成
-            if (this.teamList.length >= 400) {
+            if (res.data.length < 20) {
               this.finished = true;
             }
           }
         })
       },
-      
+
     }
   }
 

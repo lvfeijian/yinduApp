@@ -40,7 +40,6 @@ import {
         loading: false, // 是否处于加载状态，加载过程中不触发load事件
         finished: false, // 是否已加载完成，加载完成后不再触发load事件
         page: 1,
-        total: 0,
       };
     },
 
@@ -70,28 +69,26 @@ import {
           page: this.page,
           limit: 20
         }).then(res => {
-          console.log(res);
           if(res.code == 1){
-            // this.noticeListData.push(res.data)
-            for (let i = 0; i < 20; i++) {
-              this.noticeListData.push({
-                "id": 1,
-                "title": "ANNOUNCEMENT OF FAME - 1",
-                "create_time": "2021.10.27",
-                "content": "\n<p>Our company solemnly declares that the Beijing branch ofXXX Co., Ltd. does not have a \"gift department\". In addition,our company does not have any cooperative relationshipwith \"Investment Co. Ltd.\" and its related products, nordoes it have any business contacts.</p>\n<p><br></p>\n<p>I would liknto remind everyone to invest cautiously. Ifyou have any questions or service needs, please consultand verify through Ping An's official channels (website:,customer service phone: хххххххх).</p>\n<p><br></p>\n"
-              });
-            }
+            this.noticeListData.push(...res.data)
             this.page+=1
             this.loading = false;
             // 数据全部加载完成
-            if (this.noticeListData.length >= 40) {
+            if (res.data.length < 20) {
               this.finished = true;
             }
           }
         })
       },
       
-    }
+    },
+    // activated () {
+    //   const scrollTop = this.$route.meta.scrollTop;
+    //   const $wrapper = document.querySelector('.list');
+    //   if (scrollTop && $wrapper) {
+    //     $wrapper.scrollTop = scrollTop;
+    //   }
+    // },
   }
 
 </script>

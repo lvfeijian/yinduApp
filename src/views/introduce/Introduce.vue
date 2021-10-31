@@ -5,7 +5,7 @@
   	<div class="introduce-bg">
   		<img src="../../assets/img/invite/bg.jpg" alt="">
 		<div class="title">Company project introduction</div>
-		<div class="container" v-html>{{company}}</div>
+		<div class="container" v-html="company"></div>
   	</div>
   </div>
 </template>
@@ -22,7 +22,7 @@
   export default {
     data() {
       return {
-        company: 'qqq'
+        company: ''
       }
     },
 

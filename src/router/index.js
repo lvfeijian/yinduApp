@@ -37,6 +37,8 @@ const routes = [
         component:Home,
         meta: {
             TabbarShow: true,
+            keepAlive: true,
+            scrollTop: 0
         },
     },
     {
@@ -114,6 +116,10 @@ const routes = [
         path: '/announcement',
         name: 'Announcement',
         component: () => import( '../views/announcement/Announcement'),
+        meta: {
+            keepAlive: true,
+            scrollTop: 0
+        },
     },
     {
         path: '/announcementDetail',
@@ -139,7 +145,17 @@ const routes = [
         path: '/card',
         name: 'Card',
         component: () => import( '@/views/card/Card'),
-    }
+    },
+    {
+        path: '/taskDetail',
+        name: 'TaskDetail',
+        component: () => import( '../views/taskDetail/TaskDetail'),
+    },
+    {
+        path: '/myLevel',
+        name: 'MyLevel',
+        component: () => import( '../views/myLevel/MyLevel'),
+    },
    
 ]
 const router = new VueRouter({
@@ -148,7 +164,12 @@ const router = new VueRouter({
 })
 //路由导航守卫
 router.beforeEach((to,from,next) => {
-    if(to.path === '/login' || to.path === '/404') return next()
+    // if(from.meta.keepAlive) {
+    //     const list = document.querySelector('.list');
+    //     const scrollTop = list ? list.scrollTop : 0;
+    //     from.meta.scrollTop = scrollTop;
+    // }
+    if(to.path === '/login' || to.path === '/404' || to.path=== '/register') return next()
     const token = window.sessionStorage.getItem('token')
     if(!token)
     return next('/login')
