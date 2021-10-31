@@ -21,6 +21,9 @@ import Vue from 'vue';
 import { NavBar, Notify } from 'vant';
 Vue.use(NavBar);
 Vue.use(Notify);
+import {
+  changePassword
+} from '@/network/mine'
   export default {
     data() {
       return {
@@ -38,11 +41,20 @@ Vue.use(Notify);
     methods: {
       submit(){
         if(this.password.trim().length<6){
-          Notify({ type: 'danger', message: '密码长度需要大于6位' });
+          return Notify({ type: 'danger', message: 'password length is greater than 6 digits' });
         }
         if(this.confirmPwd != this.password){
-          Notify({ type: 'danger', message: '两次密码不一致' });
+          return Notify({ type: 'danger', message: 'two passwords are inconsistent' });
         }
+        changePassword({
+          password: this.password,
+          repassword: this.confirmPwd
+        }).then(res => {
+          if(res.code == 1){
+            window.sessionStorage.removeItem("token");
+            this.$router.push('/login')
+          }
+        })
       },
       onClickLeft(){
         this.$router.push({

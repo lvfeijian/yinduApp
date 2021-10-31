@@ -17,7 +17,7 @@
 		<div class="home-tip">
 			<van-notice-bar left-icon="volume-o" :scrollable="false">
 				<van-swipe vertical class="notice-swipe" :autoplay="5000" :show-indicators="false">
-					<van-swipe-item class="swipe-item" v-for="(item,index) in 3" :key="index" @click="handleNotice">Notice {{index}}</van-swipe-item>
+					<van-swipe-item class="swipe-item" v-for="(item,index) in noticeData" :key="index" @click="handleNotice(item.id)">{{item.title}}</van-swipe-item>
 				</van-swipe>
 			</van-notice-bar>
 		</div>
@@ -34,7 +34,8 @@
 <script>
 	import Vue from 'vue';
 	import {
-		getSwiperList
+		getSwiperList,
+		noticeListApi
 	} from '@/network/home'
 	import {
 		NoticeBar,
@@ -64,19 +65,19 @@
 					}
 				],
 				bannerImg: [],
+				noticeData: []
 			};
 		},
 
 		components: {},
 
 		computed: {},
-
 		mounted() {
+			this.getNoticeList()
 			getSwiperList().then(res => {
 				if(res.code == 1){
 					this.bannerImg = res.data
 				}
-				console.log(res);  
 			})
 		},
 
@@ -94,14 +95,25 @@
 				this.$router.push({
 					path
 				})
-				console.log("列表点击");
 			},
 			// 公告点击
-			handleNotice(e){
+			handleNotice(id){
 				this.$router.push({
-					path: 'announcementDetail'
+					path: 'announcementDetail',
+					query: {
+						id
+					}
 				})
-			}
+			},
+			getNoticeList(){
+        noticeListApi({
+          type: 0
+        }).then(res => {
+          if(res.code == 1){
+            this.noticeData = res.data
+          }
+        })
+      }
 		}
 	}
 </script>

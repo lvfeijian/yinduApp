@@ -10,13 +10,13 @@
     </div>
     <div class="empty"></div>
     <div class="switch">
-      <div class="switch_item" :class="chooseIndex ? 'active' : ''" @click="handleSwitch">
+      <div class="switch_item">
         <div class="text">DIRECT PUSH</div>
-        <div class="number">10</div>
+        <div class="number">{{direct_push}}</div>
       </div>
-      <div class="switch_item" :class="chooseIndex ? '' : 'active'" @click="handleSwitch">
+      <div class="switch_item active">
         <div class="text">TOTAL PEOPLE</div>
-        <div class="number">32</div>
+        <div class="number">{{total_people}}</div>
       </div>
     </div>
     <div class="table">
@@ -26,17 +26,25 @@
         <div class="header_item name">NAME</div>
       </div>
       <div class="table_body">
-        <div class="table_item" v-for="item in 3">
+        <van-list
+          v-model="loading"
+          :finished="finished"
+          finished-text="没有更多了"
+          @load="onLoad"
+        >
+          <div class="table_item" v-for="(item,index) in teamList" :key="index">
             <div class="level">
-              GOLD VIP
+              {{item.vip_level}}
             </div>
             <div class="number">
-              156****8987
+              {{item.account.replace(item.account.substring(3,7), "****")}}
             </div>
             <div class="name">
-              TONY
+              {{item.name || item.account.replace(item.account.substring(3,7), "****")}}
             </div>
-        </div>
+          </div>
+        </van-list>
+        
       </div>
     </div>
   </div>
@@ -44,28 +52,62 @@
 
 <script>
 import Vue from 'vue';
-import { NavBar } from 'vant';
+import { NavBar, List } from 'vant';
+Vue.use(List);
 Vue.use(NavBar);
+import {
+  userTeam
+} from '@/network/mine'
   export default {
     data() {
       return {
-        chooseIndex: true
+        teamList: [],
+        loading: false, // 是否处于加载状态，加载过程中不触发load事件
+        finished: false, // 是否已加载完成，加载完成后不再触发load事件
+        page: 1,
+        total: 0,
+        direct_push: 0,
+        total_people: 0
       };
     },
 
     components: {},
 
     computed: {},
-
+    created() {
+      this.direct_push = this.$route.query.direct_push
+      this.total_people = this.$route.query.total_people
+    },
     mounted() { },
 
     methods: {
       onClickLeft(){
         this.$router.go(-1)
       },
-      handleSwitch(){
-        this.chooseIndex = !this.chooseIndex
-      }
+      onLoad(){
+        userTeam({
+          page: this.page,
+          limit: 20
+        }).then(res => {
+          if(res.code == 1){
+            // this.teamList.push(res.data)
+            for (let i = 0; i < 20; i++) {
+              this.teamList.push({
+                "vip_level": "FREE",
+                "account": "13560404297",
+                "name": "lfj"
+              });
+            }
+            this.page+=1
+            this.loading = false;
+            // 数据全部加载完成
+            if (this.teamList.length >= 400) {
+              this.finished = true;
+            }
+          }
+        })
+      },
+      
     }
   }
 

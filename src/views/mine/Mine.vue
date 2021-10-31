@@ -6,25 +6,25 @@
     </div>
     <div class="bg">
     </div>
-    <div class="card">
+    <div class="card" v-if="userInfo">
       <div class="left">
         <div class="head_image">
-          <!-- <img src="" alt="" /> -->
+          <img :src="userInfo.logo" alt="" />
         </div>
-        <div class="tips">MY DATA</div>
+        <div class="tips" @click="goRouter">MY DATA</div>
       </div>
       <div class="right">
-        <div class="name">JENNY</div>
+        <div class="name">{{userInfo.name == '' ? userInfo.phone.replace(userInfo.phone.substring(3,7), "****") : userInfo.name}}</div>
         <div class="code">
           <div class="text">INVITATION CODE：239987</div>
           <div class="copy">COPY</div>
         </div>
-        <div class="level">VIP LEVEL：GOLD</div>
-        <div class="time">THE REMAINING NUMBER OF DAYS：18 DAY</div>
+        <div class="level">VIP LEVEL：{{userInfo.vip_level}}</div>
+        <div class="time">THE REMAINING NUMBER OF DAYS：{{userInfo.remain_day}} DAY</div>
       </div>
     </div>
     <div class="navbar">
-      <div class="item" @click="golink('purchase')">
+      <div class="item" @click="golink('member')">
         <div class="icon">
           <img src="@/assets/img/mine/show_goumai_fill.png" alt="" />
         </div>
@@ -71,7 +71,7 @@
         <img class="icon" src="../../assets/img/mine/xiugaimima.png" alt="" />
         <div class="list_name">CHANGE PASSWORD</div>
       </div>
-      <div class="list_item">
+      <div class="list_item" @click="golink('bankCard')">
         <img class="icon" src="../../assets/img/mine/yinhangqia.png" alt="" />
         <div class="list_name">BANK CARD</div>
       </div>
@@ -80,31 +80,82 @@
         <div class="list_name">ABOUT US</div>
       </div>
     </div>
-    <div class="exit">
+    <div class="exit" @click="exitSystem">
       EXIT THE SYSTEM
     </div>
   </div>
 </template>
 
 <script>
+  import {
+    getUserInfo,
+    getBankCard
+  } from '@/network/mine'
   export default {
     data() {
       return {
+        userInfo: null,
+        bankCardInfo: null
       };
     },
 
     components: {},
 
     computed: {},
-
+    created(){
+      this.handleUserInfo()
+      getBankCard().then(res => {
+        if(res.code == 1){
+          this.bankCardInfo = res.data
+        }
+      })
+    },
     mounted() {
+      
     },
 
     methods: {
-      golink(url){
-        this.$router.push({
-          path: url
+      handleUserInfo(){
+        getUserInfo().then(res => {
+          if(res.code == 1){
+            this.userInfo = res.data
+          }
         })
+      },
+      golink(url){
+        let path = {
+          path: url,
+        }
+        if(url == 'team'){
+          path.query = {
+            direct_push: this.userInfo.direct_push,
+            total_people: this.userInfo.total_people
+          }
+        }
+        if(url == 'profit'){
+          path.query = {
+            task_earnings: this.userInfo.task_earnings
+          }
+        }
+        if(url == 'wallet'){
+          path.query = {
+            balance: this.userInfo.balance
+          }
+        }
+        
+        this.$router.push(path)
+      },
+      goRouter(){
+        // 是null或者是数组都跳转到backCrad
+        if(this.bankCardInfo == null || Array.isArray(this.bankCardInfo)){
+          this.$router.push('/bankCard')
+        } else {
+          this.$router.push('/card')
+        }
+      },
+      exitSystem(){
+        window.sessionStorage.removeItem("token");
+        this.$router.push('login')
       }
     }
   }

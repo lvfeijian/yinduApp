@@ -10,10 +10,10 @@
     </div>
     <div style="height:0px;">&nbsp;</div>
     <div class="list">
-      <div class="item">
-        <div class="name">ANNOUNCEMENT OF FAME</div>
-        <div class="intro">If you have any questions or service needs, ve any questions or service needs, vuestions or service needs, vuestions or service needs, vuestions or service needs, ve any questions or service needs, please consult and verify through the official channel (customer service phone: xxxxxxxxxx).</div>
-        <div class="time">2021.08.19</div>
+      <div class="item" v-if="noticeDetailData">
+        <div class="name">{{noticeDetailData.title}}</div>
+        <div class="intro" v-html="noticeDetailData.content"></div>
+        <div class="time">{{noticeDetailData.create_time}}</div>
       </div>
     </div>
   </div>
@@ -23,21 +23,37 @@
 import Vue from 'vue';
 import { NavBar } from 'vant';
 Vue.use(NavBar);
+import {
+  noticeDetailApi
+} from '@/network/home'
   export default {
     data() {
       return {
+        noticeDetailData: null
       };
     },
 
     components: {},
 
     computed: {},
-
+    created(){
+      let id = this.$route.query.id
+      this.getNoticeList(id)
+    },
     mounted() {},
 
     methods: {
       onClickLeft(){
         this.$router.go(-1)
+      },
+      getNoticeList(id){
+        noticeDetailApi({
+          id
+        }).then(res => {
+          if(res.code == 1){
+            this.noticeDetailData = res.data
+          }
+        })
       }
     }
   }

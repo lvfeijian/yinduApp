@@ -11,14 +11,21 @@
     <div class="empty"></div>
     <div class="list">
       <div class="title"><span></span>LOWER-LEVEL PURCHASE RECORDS</div>
-      <div class="item" v-for="(item,index) in 14" :key="index">
-        <div class="cont">
-          <div class="vip">VIP 1</div>
-          <div class="price">+100.00</div>
+      <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+      >
+        <div class="item" v-for="(item,index) in retailList" :key="index">
+          <div class="cont">
+            <div class="vip">VIP {{item.level}}</div>
+            <div class="price">+{{item.amount}}</div>
+          </div>
+          <div class="hour">TRANSACTION HOUR：{{item.create_time}}</div>
+          <div class="level">MEMBERSHIP LEVEL：{{item.GOLD}}</div>
         </div>
-        <div class="hour">TRANSACTION HOUR：2021-08-17 12:43:41</div>
-        <div class="level">MEMBERSHIP LEVEL：DIAMOND</div>
-      </div>
+      </van-list>
     </div>
     <div class="empty2"></div>
   </div>
@@ -26,11 +33,19 @@
 
 <script>
 import Vue from 'vue';
-import { NavBar } from 'vant';
-Vue.use(NavBar);
+import { NavBar, List } from 'vant';
+Vue.use(NavBar).use(List)
+import {
+  userRetailApi
+} from '@/network/mine'
   export default {
     data() {
       return {
+        retailList: [],
+        loading: false, // 是否处于加载状态，加载过程中不触发load事件
+        finished: false, // 是否已加载完成，加载完成后不再触发load事件
+        page: 1,
+        total: 0,
       }
     },
 
@@ -46,7 +61,33 @@ Vue.use(NavBar);
     methods: {
       onClickLeft(){
         this.$router.go(-1)
-      }
+      },
+      onLoad(){
+        userRetailApi({
+          page: this.page,
+          limit: 20
+        }).then(res => {
+          if(res.code == 1){
+            // this.retailList.push(res.data)
+            for (let i = 0; i < 20; i++) {
+              this.retailList.push({
+                "name": "hehe",
+                "level": 1,
+                "amount": "20.00",
+                "vip_level": "GOLD",
+                "create_time": "2021-10-29 17:05:02"
+              });
+            }
+            this.page+=1
+            this.loading = false;
+            // 数据全部加载完成
+            if (this.retailList.length >= 400) {
+              this.finished = true;
+            }
+          }
+        })
+      },
+      
     }
   }
 
