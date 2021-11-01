@@ -6,14 +6,22 @@
 			<!-- <img :src="videoInfo.logo" alt="" /> -->
 			<video controls="controls" :src="videoInfo.video_url"></video>
 		</div>
+		<Dialog @close="doClose" @handleBtn="handleBtn" :isShow="isShowDialog" :type="type" :btnText="btnText">
+      <div v-html="message" style="font-size: 16px;text-align: left"></div>
+    </Dialog>
+		<div class="count_down" v-if="isShowCountDown">
+			Gain rewards after watching for {{videoInfo.view_time}} seconds
+		</div>
 	</div>
 </template>
 
 <script>
 	import Vue from 'vue';
 	import {
-		taskDetailApi
+		taskDetailApi,
+		taskFinishApi
 	} from '@/network/task'
+	import Dialog from '@/components/common/dialog/Dialog'
 	import {
 		NavBar,
 	} from 'vant';
@@ -21,12 +29,20 @@
 	export default {
 		data() {
 			return {
+				timer: null,
+				isShowCountDown:false,
 				id: null,
-				videoInfo: null
+				videoInfo: null,
+				isShowDialog:false,
+				type: 1,
+				btnText: 'TO FINISH',
+				message: 'CONGRATULATIONS YOU <br>HAVE GRABBED THE TASK <br>REWARD, PLEASE·'
 			};
 		},
 
-		components: {},
+		components: {
+			Dialog
+		},
 
 		computed: {},
 		created(){
@@ -43,11 +59,36 @@
 				}).then(res => {
 					if(res.code == 1){
 						this.videoInfo = res.data
+						if(res.data){
+							this.isShowDialog = true
+						}
 					}
 				})
 			},
 			onClickLeft: function(){
 				this.$router.go(-1)
+			},
+			doClose(){
+				this.isShowDialog = false
+			},
+			handleBtn(){
+				this.isShowDialog = false
+				this.isShowCountDown = true
+				this.timer = setInterval(() => {
+					this.videoInfo.view_time--
+					if(this.videoInfo.view_time <= 0){
+						clearInterval(this.timer)
+						this.isShowCountDown = false
+						taskFinishApi({
+							id: this.videoInfo.id,
+							auth_code: this.videoInfo.auth_code
+						}).then(res => {
+							if(res.code == 1){
+								console.log(res);
+							}
+						})
+					}
+				}, 1000);
 			}
 		}
 	}
