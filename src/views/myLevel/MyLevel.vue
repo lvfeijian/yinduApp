@@ -17,11 +17,18 @@
       <div class="buy">DIRECT PURCHASE</div>
       <div class="level">
         <div class="next_level">10 PEOPLE TO UPGRADE TO THE NEXT LEVEL</div>
-        <!-- <van-steps :active="active">
-          <van-step>SILVER</van-step>
-          <van-step>GOLD</van-step>
-          <van-step>DIAMOND</van-step>
-        </van-steps> -->
+		<div class="progress-box">
+			<div class="cire"></div>
+			<div class="progress">
+				<div class="cire-box isActive"></div>
+				<div class="left-cire isActive"></div>
+			</div>
+			<div class="progress">
+				<div class="cire-box active"></div>
+				<div class="left-cire active"></div>
+			</div>
+		</div>
+		div
         <div class="tips">CURRENT LEVEL</div>
         <div class="btn">INVITE NOW</div>
       </div>
