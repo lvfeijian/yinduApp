@@ -2,9 +2,9 @@
 <template>
   <div class="dialog" v-if="isShow">
     <div class="dialog_cont">
-      <img class="close" @click="doClose" src="./img/error.png" alt="" />
+      <img class="close" @click="doClose" src="./img/关闭@2x.png" alt="" />
       <div class="logo">
-        <img v-if="type == 1" src="./img/关闭@2x.png" alt="" />
+        <img v-if="type == 1" src="./img/success.png" alt="" />
         <img v-else-if="type == 2" src="./img/error.png" alt="" />
         <img v-else src="./img/bad.png" alt="" />
       </div>
