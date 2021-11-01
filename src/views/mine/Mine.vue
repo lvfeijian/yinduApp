@@ -36,6 +36,12 @@
         </div>
         <p>TEAM</p>
       </div>
+      <div class="item" @click="golink('myLevel')">
+        <div class="icon">
+          <img src="@/assets/img/mine/yaoqing.png" alt="" />
+        </div>
+        <p>INVITE</p>
+      </div>
       <div class="item" @click="golink('profit')">
         <div class="icon">
           <img src="@/assets/img/mine/tixian.png" alt="" />
