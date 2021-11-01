@@ -9,6 +9,9 @@
 				</div>
 			</div>
 		</div>
+		<Dialog @close="doClose" @handleBtn="handleBtn" :isShow="isShowDialog" :type="type" :btnText="btnText">
+      <div v-html="message" style="font-size: 15px;text-align: left"></div>
+    </Dialog>
 	</div>
 </template>
 
@@ -17,6 +20,7 @@
 	import {
 		getTaskList
 	} from '@/network/task'
+	import Dialog from '@/components/common/dialog/Dialog'
 	import {
 		NavBar,
 	} from 'vant';
@@ -24,11 +28,17 @@
 	export default {
 		data() {
 			return {
-				bannerImg:[]
+				bannerImg:[],
+				isShowDialog: false,
+				type: 3,
+				btnText: 'BACK',
+				message: 'UNFORTUNATELY, YOU DID <br/>NOT GRAB THE REWARD,<br/> PLEASE KEEP WORKING HARD'
 			};
 		},
 
-		components: {},
+		components: {
+			Dialog
+		},
 
 		computed: {},
 
@@ -37,6 +47,10 @@
 			getTaskList().then(res => {
 				if(res.code == 1){
 					this.bannerImg = res.data
+					console.log(res.data.length);
+					if(res.data.length == 0){
+						this.isShowDialog = true
+					}
 				}
 			})
 		},
@@ -56,6 +70,13 @@
 				this.$router.push({
 					path: 'home'
 				})
+			},
+			doClose(){
+				this.isShowDialog = false
+			},
+			handleBtn(){
+				this.isShowDialog = false
+				this.$router.push('/home')
 			}
 		}
 	}

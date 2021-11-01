@@ -17,3 +17,14 @@ export function taskDetailApi(params){
     })
 }
 
+// 任务完成接口
+export function taskFinishApi(data){
+    return request({
+        url: 'api/task/finish',
+        method: 'post',
+        data
+    })
+}
+
+
+

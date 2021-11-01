@@ -36,7 +36,7 @@ export default {
 
   computed: {},
   created(){
-    this.code = this.$route.query.code
+    this.code = this.$route.query.code || ''
   },
   mounted() {
   },
@@ -50,21 +50,21 @@ export default {
     // 注册
     handleRegister(){
       if(this.phone.trim().length != 11){
-        Notify({ type: 'danger', message: '手机号码格式不对' });
+        Notify({ type: 'danger', message: 'Wrong mobile phone number format' });
         this.$refs.phone.focus()
         return
       }
       if(this.password.trim().length < 6){
-        Notify({ type: 'danger', message: '密码长度需要大于6位' });
+        Notify({ type: 'danger', message: 'password length is greater than 6 digits' });
         this.$refs.password.focus()
         return
       }
       if(this.confirmPassword != this.password){
-        Notify({ type: 'danger', message: '两次密码不一致' });
+        Notify({ type: 'danger', message: 'two passwords are inconsistent' });
         return
       }
       if(this.code.length == 0){
-        Notify({ type: 'danger', message: '请填写验证码' });
+        Notify({ type: 'danger', message: 'Please fill in the verification code' });
         this.$refs.code.focus()
         return
       }
