@@ -18,18 +18,15 @@
       <div class="level">
         <div class="next_level">10 PEOPLE TO UPGRADE TO THE NEXT LEVEL</div>
 		<div class="progress-box">
-			<div class="cire"></div>
-			<div class="progress">
-				<div class="cire-box isActive"></div>
-				<div class="left-cire isActive"></div>
-			</div>
-			<div class="progress">
-				<div class="cire-box active"></div>
-				<div class="left-cire active"></div>
+			
+			<!-- for循环开始 -->
+			<div class="progress" v-for="(item,index) in vipList" :key="index">
+				<div class="cire-box" :class="index != vipList.length-1 && curVip == item.name ? 'isActive' : 'active'"></div>
+				<div class="left-cire" :class="curVip == item.name ? 'isActive' : 'active'"></div>
+				<div class="vip-title">{{item.name}}</div>
 			</div>
 		</div>
-		div
-        <div class="tips">CURRENT LEVEL</div>
+        <div class="tips">CURRENT LEVEL </div>
         <div class="btn">INVITE NOW</div>
       </div>
     </div>
@@ -37,7 +34,9 @@
 </template>
 
 <script>
-  
+  import {
+    getMyPush
+  } from '@/network/mylevel.js';
   import Vue from 'vue';
 	import {
 		taskDetailApi
@@ -52,14 +51,23 @@
     data() {
       return {
         active: 1,
+		vipList:null ,
+		curVip:null,
       };
     },
 
     components: {},
 
     computed: {},
-
-    mounted() {},
+    mounted() {
+		getMyPush().then(res => {
+		  if(res.code == 1){
+			let newData = res.data
+		    this.vipList = newData.vip
+			this.curVip = newData.vip_level
+		  }
+		})
+	},
 
     methods: {
       onClickLeft(){
