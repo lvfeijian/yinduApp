@@ -1,20 +1,20 @@
 <!--介绍-->
 <template>
   <div class="introduce">
-  	<van-nav-bar title="ABOUT US"/>
+  	<van-nav-bar title="INTRODUCE"/>
   	<div class="introduce-bg">
   		<img src="../../assets/img/invite/bg.jpg" alt="">
-		<div class="title">aboutme</div>
+		<div class="title">Company project introduction</div>
 		<div class="container" v-html="company"></div>
   	</div>
   </div>
 </template>
 
 <script>
-    import Vue from 'vue';
-  // import {
-  //   getCompanyIntro
-  // } from '@/network/introduct'
+	import Vue from 'vue';
+  import {
+    getCompanyIntro
+  } from '@/network/introduct'
 	import {
 		NavBar,
 	} from 'vant';
@@ -30,11 +30,11 @@
 
     computed: {},
     created(){
-      // getCompanyIntro().then(res => {
-      //   if(res.code == 1){
-      //     this.company = res.data.company
-      //   }
-      // })
+      getCompanyIntro().then(res => {
+        if(res.code == 1){
+          this.company = res.data.company
+        }
+      })
     },
     mounted() {},
 

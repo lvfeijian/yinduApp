@@ -59,31 +59,37 @@
       <div class="list_item" @click="golink('purchase')">
         <img class="icon" src="../../assets/img/mine/goumaicantuan.png" alt="" />
         <div class="list_name">SUBORDINATE PURCHASE</div>
-        <img class="jiantou" src="../../assets/img/mine/goumaicantuan.png" alt="" />
+        <img class="jiantou" src="../../assets/img/mine/Combined Shape.png" alt="" />
       </div>
       <div class="list_item" @click="golink('announcement')">
-        <img class="icon" src="../../assets/img/mine/goumaicantuan.png" alt="" />
+        <img class="icon" src="../../assets/img/mine/gonggao.png" alt="" />
         <div class="list_name">PLATFORM ANNOUNCEMENT</div>
+        <img class="jiantou" src="../../assets/img/mine/Combined Shape.png" alt="" />
       </div>
       <div class="list_item" @click="golink('appDownload')">
         <img class="icon" src="../../assets/img/mine/xiazai.png" alt="" />
         <div class="list_name">APP DOWNLOAD</div>
+        <img class="jiantou" src="../../assets/img/mine/Combined Shape.png" alt="" />
       </div>
       <div class="list_item">
         <img class="icon" src="../../assets/img/mine/zaixiankefu.png" alt="" />
         <div class="list_name">ONLINE SERVICE</div>
+        <img class="jiantou" src="../../assets/img/mine/Combined Shape.png" alt="" />
       </div>
       <div class="list_item" @click="golink('modifyPassword')">
         <img class="icon" src="../../assets/img/mine/xiugaimima.png" alt="" />
         <div class="list_name">CHANGE PASSWORD</div>
+        <img class="jiantou" src="../../assets/img/mine/Combined Shape.png" alt="" />
       </div>
       <div class="list_item" @click="golink('bankCard')">
         <img class="icon" src="../../assets/img/mine/yinhangqia.png" alt="" />
         <div class="list_name">BANK CARD</div>
+        <img class="jiantou" src="../../assets/img/mine/Combined Shape.png" alt="" />
       </div>
-      <div class="list_item" @click="golink('bankCard')">
+      <div class="list_item" @click="golink('aboutme')">
         <img class="icon" src="../../assets/img/mine/bangzhuzhongxin.png" alt="" />
         <div class="list_name">ABOUT US</div>
+        <img class="jiantou" src="../../assets/img/mine/Combined Shape.png" alt="" />
       </div>
     </div>
     <div class="exit" @click="exitSystem">
@@ -151,12 +157,20 @@
             balance: this.userInfo.balance
           }
         }
-		// 关于我们
-		if(url == 'about'){
-		  path.query = {
-		    about: this.userInfo.about
-		  }
-		}
+        if(url == 'bankCard'){
+          // 是null或者是数组都跳转到backCrad
+          if(this.bankCardInfo == null || Array.isArray(this.bankCardInfo)){
+            return this.$router.push('/bankCard')
+          } else {
+            return this.$router.push('/card')
+          }
+        }
+        // 关于我们
+        // if(url == 'about'){
+        //   path.query = {
+        //     about: this.userInfo.about
+        //   }
+        // }
         this.$router.push(path)
       },
       goRouter(){

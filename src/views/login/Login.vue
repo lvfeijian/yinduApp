@@ -41,11 +41,11 @@ export default {
     },
     handleLogin(){
       if(this.phone.trim().length !=11){
-        Notify({ type: 'danger', message: '手机号码格式不对' });
+        Notify({ type: 'danger', message: 'Wrong mobile phone number format' });
         return
       }
       if(this.password.trim().length < 6){
-        Notify({ type: 'danger', message: '密码长度需要大于6位' });
+        Notify({ type: 'danger', message: 'password length is greater than 6 digits' });
         return
       }
       userLogin({
