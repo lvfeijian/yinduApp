@@ -4,7 +4,7 @@
 		<van-nav-bar :title="videoInfo && videoInfo.title" left-arrow  @click-left="onClickLeft"/>
 		<div class="video" v-if="videoInfo">
 			<!-- <img :src="videoInfo.logo" alt="" /> -->
-			<video controls="controls" :src="videoInfo.video_url"></video>
+			<video ref="video" controls="controls" :src="videoInfo.video_url"></video>
 		</div>
 		<Dialog @close="doClose" @handleBtn="handleBtn" :isShow="isShowDialog" :type="type" :btnText="btnText">
       <div v-html="message" style="font-size: 16px;text-align: left"></div>
@@ -24,7 +24,9 @@
 	import Dialog from '@/components/common/dialog/Dialog'
 	import {
 		NavBar,
+		Notify
 	} from 'vant';
+	Vue.use(Notify);
 	Vue.use(NavBar);
 	export default {
 		data() {
@@ -72,6 +74,7 @@
 				this.isShowDialog = false
 			},
 			handleBtn(){
+				this.$refs.video.play()
 				this.isShowDialog = false
 				this.isShowCountDown = true
 				this.timer = setInterval(() => {
@@ -84,7 +87,7 @@
 							auth_code: this.videoInfo.auth_code
 						}).then(res => {
 							if(res.code == 1){
-								console.log(res);
+								Notify({ type: 'success', message: 'Mission accomplished' });
 							}
 						})
 					}
