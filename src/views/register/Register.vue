@@ -5,7 +5,7 @@
         <img src="@/assets/img/login/logo.png" alt="">
     </div>
     <div class="title">REGISTER</div>
-    <input class="userInput" type="number" ref="phone" v-model="phone" @input="changeNumber" placeholder="PHONE NUMBER" maxlength="11">
+    <input class="userInput" type="number" ref="phone" v-model="phone" @input="changeNumber" placeholder="PHONE NUMBER" maxlength="10">
     <input class="pwdInput" type="password" ref="password" v-model="password" placeholder="INPUT PASSWORD" maxlength="18">
     <input class="confirmPwdInput" type="password" v-model="confirmPassword" placeholder="CONFIRM PASSWORD" maxlength="18">
     <input class="code" ref="code" type="text" v-model="code" placeholder="INVITATION CODE">
@@ -43,13 +43,13 @@ export default {
 
   methods: {
     changeNumber(){
-      if(this.phone.length>11){
-        this.phone = this.phone.slice(0,11)
+      if(this.phone.length>10){
+        this.phone = this.phone.slice(0,10)
       }
     },
     // 注册
     handleRegister(){
-      if(this.phone.trim().length != 11){
+      if(this.phone.trim().length != 10){
         Notify({ type: 'danger', message: 'Wrong mobile phone number format' });
         this.$refs.phone.focus()
         return

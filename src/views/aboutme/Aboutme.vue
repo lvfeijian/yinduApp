@@ -1,7 +1,7 @@
 <!--介绍-->
 <template>
   <div class="introduce">
-  	<van-nav-bar title="INTRODUCE"/>
+  	<van-nav-bar title="INTRODUCE" left-arrow  @click-left="onClickLeft"/>
   	<div class="introduce-bg">
   		<img src="../../assets/img/invite/bg.jpg" alt="">
 		<div class="title">Company project introduction</div>
@@ -38,7 +38,11 @@
     },
     mounted() {},
 
-    methods: {}
+    methods: {
+      onClickLeft(){
+        this.$router.go(-1)
+      }
+    }
   }
 
 </script>

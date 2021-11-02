@@ -69,7 +69,9 @@
 				</div>
 				<div class="btn" @click="handleCopy">COPY</div>
 			</div>
-		
+			<Dialog @close="doClose" @handleBtn="handleBtn" :isShow="isShowDialog" type="1">
+				Copy succeeded
+			</Dialog>
 		
   	</div>
   </div>
@@ -77,7 +79,7 @@
 
 <script>
 	import Vue from 'vue';
-  import { Dialog } from 'vant';
+	import Dialog from '@/components/common/dialog/Dialog'
 	import {
 		NavBar,
 	} from 'vant';
@@ -85,10 +87,13 @@
   export default {
     data() {
       return {
+				isShowDialog: false,
       };
     },
 
-    components: {},
+    components: {
+			Dialog
+		},
 
     computed: {},
 
@@ -108,8 +113,14 @@
         newInput.select();
         document.execCommand("Copy");
         newInput.remove();
-        Dialog({ message: '复制成功' });
+				this.isShowDialog = true
       },
+			handleBtn(){
+				this.isShowDialog = false
+			},
+			doClose(){
+				this.isShowDialog = false
+			}
 		}
   }
 

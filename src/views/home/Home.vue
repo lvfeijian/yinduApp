@@ -28,7 +28,10 @@
 				<img :src="require('../../assets/img/home/' + item.url)"/>
 			</div>
 		</div>
-		
+		<Dialog @close="doClose" @handleBtn="handleBtn" :isShow="isShowDialog"  btnText="BUY NOW">
+			<div>YOU ARE NOT <br>
+				YET A VIP</div>
+    </Dialog>
 	</div>
 </template>
 
@@ -51,6 +54,8 @@
 	Vue.use(Swipe);
 	Vue.use(SwipeItem);
 	Vue.use(Lazyload);
+	import Dialog from '@/components/common/dialog/Dialog'
+
 	export default {
 		data() {
 			return {
@@ -69,11 +74,15 @@
 					}
 				],
 				bannerImg: [],
-				noticeData: []
+				noticeData: [],
+				is_vip: 0,
+				isShowDialog: false
 			};
 		},
 
-		components: {},
+		components: {
+			Dialog
+		},
 
 		computed: {},
 		mounted() {
@@ -86,6 +95,7 @@
 			getUserInfo().then(res => {
 				if(res.code == 1){
 					localStorage.setItem('userInfo',JSON.stringify(res.data))
+					this.is_vip = res.data.is_vip
 				}
 			})
 		},
@@ -101,6 +111,10 @@
 			 * 列表点击
 			 */
 			onItemBanner: function(path){
+				if(this.is_vip == 0 && path == 'task'){
+					this.isShowDialog = true
+					return
+				}
 				this.$router.push({
 					path
 				})
@@ -122,7 +136,14 @@
             this.noticeData = res.data
           }
         })
-      }
+      },
+			doClose(){
+				this.isShowDialog = false
+			},
+			handleBtn(){
+				this.isShowDialog = false
+				this.$router.push('/member')
+			}
 		}
 	}
 </script>

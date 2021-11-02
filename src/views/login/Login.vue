@@ -5,7 +5,7 @@
       <img src="@/assets/img/login/logo.png" alt="">
     </div>
     <div class="title">LOG<span></span>IN</div>
-    <input class="userInput" type="number" v-model="phone" @input="changeNumber" placeholder="ACCOUNT NUMBER" max="11">
+    <input class="userInput" type="number" v-model="phone" @input="changeNumber" placeholder="ACCOUNT NUMBER" max="10">
     <input class="pwdInput" type="password" v-model="password" placeholder="PASSWORD" maxlength="18">
     <div class="login_btn" @click="handleLogin">PASSWORD</div>
     <div class="switch" @click="goLink">REGISTERED ACCOUNT</div>
@@ -35,12 +35,12 @@ export default {
 
   methods: {
     changeNumber(){
-      if(this.phone.length>11){
-        this.phone = this.phone.slice(0,11)
+      if(this.phone.length>10){
+        this.phone = this.phone.slice(0,10)
       }
     },
     handleLogin(){
-      if(this.phone.trim().length !=11){
+      if(this.phone.trim().length !=10){
         Notify({ type: 'danger', message: 'Wrong mobile phone number format' });
         return
       }

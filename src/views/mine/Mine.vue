@@ -95,12 +95,15 @@
     <div class="exit" @click="exitSystem">
       EXIT THE SYSTEM
     </div>
+    <Dialog @close="doClose" @handleBtn="handleBtn" :isShow="isShowDialog" type="1">
+      Copy succeeded
+    </Dialog>
   </div>
 </template>
 
 <script>
   import Vue from 'vue';
-  import { Dialog } from 'vant';
+	import Dialog from '@/components/common/dialog/Dialog'
 
   import {
     getUserInfo,
@@ -110,11 +113,14 @@
     data() {
       return {
         userInfo: null,
-        bankCardInfo: null
+        bankCardInfo: null,
+				isShowDialog: false,
       };
     },
 
-    components: {},
+    components: {
+      Dialog
+    },
 
     computed: {},
     created(){
@@ -196,9 +202,14 @@
         newInput.select();
         document.execCommand("Copy");
         newInput.remove();
-        Dialog({ message: '复制成功' });
+        this.isShowDialog = true
       },
-
+      doClose(){
+        this.isShowDialog = false
+      },
+      handleBtn(){
+        this.isShowDialog = false
+      }
     }
   }
 

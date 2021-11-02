@@ -8,7 +8,6 @@
         @click-left="onClickLeft"
       />
     </div>
-    <div class="empty"></div>
     <div class="switch">
       <div class="switch_item">
         <div class="text">DIRECT PUSH</div>
