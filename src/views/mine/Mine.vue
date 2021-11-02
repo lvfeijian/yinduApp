@@ -81,7 +81,7 @@
         <img class="icon" src="../../assets/img/mine/yinhangqia.png" alt="" />
         <div class="list_name">BANK CARD</div>
       </div>
-      <div class="list_item">
+      <div class="list_item" @click="golink('bankCard')">
         <img class="icon" src="../../assets/img/mine/bangzhuzhongxin.png" alt="" />
         <div class="list_name">ABOUT US</div>
       </div>
@@ -151,7 +151,12 @@
             balance: this.userInfo.balance
           }
         }
-        
+		// 关于我们
+		if(url == 'about'){
+		  path.query = {
+		    about: this.userInfo.about
+		  }
+		}
         this.$router.push(path)
       },
       goRouter(){

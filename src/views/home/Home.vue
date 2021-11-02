@@ -1,9 +1,10 @@
 <!-- Home -->
 <template>
 	<div class="home">
+		<div class="home-title">HOME</div>
 		<!-- 背景图 -->
 		<div class="home-bg">
-			<div class="home-title">HOME</div>
+			
 			<!-- 轮播图 -->
 			<div class="home-banner">
 				<van-swipe class="my-swipe" :autoplay="3000" :show-indicators="false">

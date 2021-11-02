@@ -15,7 +15,7 @@ Vue.use(VueRouter)
 const routes = [
     {
         path:'*',
-        redirect:'/login'
+        redirect:'/home'
     },
     {
         path:'/login',
@@ -156,6 +156,11 @@ const routes = [
         name: 'MyLevel',
         component: () => import( '../views/myLevel/MyLevel'),
     },
+	{
+	    path: '/aboutme',
+	    name: 'Aboutme',
+	    component: () => import( '../views/aboutme/Aboutme'),
+	},
    
 ]
 const router = new VueRouter({
