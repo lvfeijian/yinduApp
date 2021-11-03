@@ -2,6 +2,16 @@ module.exports = ({ file }) => {
   const designWidth = file.dirname.includes("node_modules/vant") ? 375 : 375;
   return {
     plugins: {
+      'autoprefixer': {
+        overrideBrowserslist: [
+        "Android 4.1",
+        "iOS 7.1",
+        "Chrome > 31",
+        "ff > 31",
+        "ie >= 8"
+        ],
+        grid: true
+      },
       'postcss-px-to-viewport': {
         unitToConvert: 'px', //需要转换的单位，默认为"px"
         viewportWidth: designWidth, // 视窗的宽度，对应的是我们设计稿的宽度

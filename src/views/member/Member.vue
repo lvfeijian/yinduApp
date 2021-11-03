@@ -53,10 +53,12 @@
 		Icon,
 		Notify
 	} from 'vant';
+	import { Toast } from 'vant';
 	Vue.use(NavBar);
 	Vue.use(Popup);
 	Vue.use(Icon);
 	Vue.use(Notify);
+	Vue.use(Toast);
 	import {
 		vipListApi,
 		vipPayApi,
@@ -116,7 +118,7 @@
 
 		methods: {
 			onClickLeft: function() {
-				this.$router.push('/home')
+				this.$router.go(-1)
 			},
 
 			/**
@@ -142,11 +144,16 @@
 				}
 				let id = this.vipList[this.currentIndex].id
 				let url = window.location.host + '/member'
+				Toast.loading({
+					message: 'loading...',
+					forbidClick: true,
+				});
 				vipPayApi({
 					id,
 					callback_url: url
 				}).then(res => {
 					if(res.code == 1){
+						Toast.clear();
 						window.location.href = res.data.url
 						window.localStorage.setItem('order_sn', res.data.order_sn)
 					}

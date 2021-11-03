@@ -31,7 +31,11 @@ export default {
 
   computed: {},
 
-  mounted() {},
+  mounted() {
+    const token = window.localStorage.getItem('token')
+    if(token){
+    }
+  },
 
   methods: {
     changeNumber(){
@@ -53,7 +57,7 @@ export default {
         password: this.password
       }).then(res => {
         if(res.code == 1){
-          sessionStorage.setItem('token', res.data.token)
+          localStorage.setItem('token', res.data.token)
           this.$router.push('/home')
         }
       })

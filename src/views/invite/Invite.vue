@@ -1,7 +1,9 @@
 <!--介绍-->
 <template>
   <div class="introduce">
-  	<van-nav-bar title="INVITATION"/>
+		<div class="header">
+      <van-nav-bar title="INVITATION"/>
+    </div>
   	<div class="introduce-bg">
   		<img src="../../assets/img/invite/bg.jpg" alt="">
 			<div class="container-box">

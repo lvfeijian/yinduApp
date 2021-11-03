@@ -1,11 +1,27 @@
 <!-- Home -->
 <template>
 	<div class="task_detail">
-		<van-nav-bar :title="videoInfo && videoInfo.title" left-arrow  @click-left="onClickLeft"/>
-		<div class="video" v-if="videoInfo">
-			<!-- <img :src="videoInfo.logo" alt="" /> -->
-			<video ref="video" controls="controls" :src="videoInfo.video_url"></video>
+		<div class="header">
+      <van-nav-bar
+        :title="videoInfo && videoInfo.title"
+        left-arrow
+        @click-left="onClickLeft"
+      />
+    </div>
+		<div v-if="videoInfo">
+
+			<div class="video" v-if="videoInfo.type == 1">
+				<video ref="video" controls="controls" :src="videoInfo.video_url"></video>
+			</div>
+			<div class="free-bg" v-if="videoInfo.type == 0">
+				<img class="img-box" src="../../assets/img/home/free.png" alt="">
+				<div class="container-box">
+					<div class="container-title">{{videoInfo.title}}</div>
+					<div class="container-text" v-html="videoInfo.content"></div>
+				</div>
+			</div>
 		</div>
+
 		<Dialog @close="doClose" @handleBtn="handleBtn" :isShow="isShowDialog" :type="type" :btnText="btnText">
       <div v-html="message" style="font-size: 16px;text-align: left"></div>
     </Dialog>

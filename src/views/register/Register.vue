@@ -21,6 +21,8 @@ import {
   userRegister
 } from '@/network/register'
 import { Notify } from 'vant';
+import { Toast } from 'vant';
+Vue.use(Toast);
 Vue.use(Notify);
 export default {
   data () {
@@ -50,21 +52,21 @@ export default {
     // 注册
     handleRegister(){
       if(this.phone.trim().length != 10){
-        Notify({ type: 'danger', message: 'Wrong mobile phone number format' });
+        Toast('Wrong mobile phone number format');
         this.$refs.phone.focus()
         return
       }
       if(this.password.trim().length < 6){
-        Notify({ type: 'danger', message: 'password length is greater than 6 digits' });
+        Toast('password length is greater than 6 digits');
         this.$refs.password.focus()
         return
       }
       if(this.confirmPassword != this.password){
-        Notify({ type: 'danger', message: 'two passwords are inconsistent' });
+        Toast('two passwords are inconsistent');
         return
       }
       if(this.code.length == 0){
-        Notify({ type: 'danger', message: 'Please fill in the verification code' });
+        Toast('Please fill in the verification code');
         this.$refs.code.focus()
         return
       }

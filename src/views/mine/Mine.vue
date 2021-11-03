@@ -188,7 +188,7 @@
         }
       },
       exitSystem(){
-        window.sessionStorage.removeItem("token");
+        window.localStorage.removeItem("token");
         this.$router.push('login')
       },
       handleCopy(){

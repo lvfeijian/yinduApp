@@ -51,7 +51,7 @@ import {
           repassword: this.confirmPwd
         }).then(res => {
           if(res.code == 1){
-            window.sessionStorage.removeItem("token");
+            window.localStorage.removeItem("token");
             this.$router.push('/login')
           }
         })

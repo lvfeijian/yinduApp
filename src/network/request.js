@@ -7,7 +7,7 @@ axios.defaults.baseURL = 'http://yd.meiba3.com';
 axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 // 请求发送之前的拦截器
 axios.interceptors.request.use(config => {
-    const token = window.sessionStorage.getItem('token')
+    const token = window.localStorage.getItem('token')
     if (token) {
         config.headers.Authorization = token
         config.headers.common['token'] = token
@@ -33,7 +33,7 @@ export function request(config){
             } else if(res.data.code == 0) {
                 Notify({ type: 'danger', message: res.data.msg });
             } else if(res.data.code == '10001'){
-                window.sessionStorage.removeItem("token");
+                window.localStorage.removeItem("token");
             }
         }, error => {
             reject(error)

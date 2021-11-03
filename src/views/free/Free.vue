@@ -8,11 +8,16 @@
         @click-left="onClickLeft"
       />
     </div>
-		<div class="free-bg">
-			<img class="img-box" src="../../assets/img/home/free.png" alt="">
-			<div class="container-box" v-if="freeData">
-				<div class="container-title">{{freeData.title}}</div>
-				<div class="container-text" v-html="freeData.content"></div>
+		<div v-if="freeData">
+			<div class="video" v-if="freeData.type == 1">
+				<video ref="video" controls="controls" :src="freeData.video_url"></video>
+			</div>
+			<div class="free-bg" v-if="freeData.type == 0">
+				<img class="img-box" src="../../assets/img/home/free.png" alt="">
+				<div class="container-box" v-if="freeData">
+					<div class="container-title">{{freeData.title}}</div>
+					<div class="container-text" v-html="freeData.content"></div>
+				</div>
 			</div>
 		</div>
 		<Dialog @close="doClose" @handleBtn="handleBtn" :isShow="isShowDialog" :type="type" :btnText="btnText">

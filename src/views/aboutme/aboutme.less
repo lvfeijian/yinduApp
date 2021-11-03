@@ -3,43 +3,50 @@
 	padding: 0;
 	box-sizing: border-box;
 }
-/deep/.van-nav-bar{
-background-color:#2B2A28 ;
-position: fixed;
-top: 0;
-width: 100%;
+.header{
+	width: 100vw;
+	position: fixed;
+	top: 0;
+	margin-top: 0px;
+	z-index: 100;
+	/deep/.van-nav-bar{
+		background: #2B2A28;
+	}
+	/deep/.van-hairline--bottom::after {
+		border-bottom-width: 0px!important;
+	}
+	/deep/.van-nav-bar__content{
+		background: #2B2A28;
+		color: #DEBB81!important;
+		.van-nav-bar__title{
+			color: #DEBB81!important;
+		}
+		.van-icon{
+			font-size: 24px;
+			color: #DEBB81!important;
+		}
+	}
+}
 
-}
-/deep/.van-nav-bar .van-icon{
-color: #DEBB81;
-font-size: 24px;
-}
-/deep/.van-nav-bar__title{
-color:  #DEBB81;
-}
-/deep/.van-nav-bar{
-background: #2B2A28;
-}
-/deep/.van-hairline--bottom::after {
-border-bottom-width: 0px!important;
-}
 .introduce{
-height: 100vh;
+	min-height: 100vh;
+	overflow: hidden;
 }
 .introduce-bg{
 width: 100vw;
-height: 100vh;
+height: calc(100vh - 46px);
 overflow: hidden;
+margin-top: 46px;
+position: relative;
 img{
 	width: 100vw;
-	height: calc(100vh - 45px);
 	position: absolute;
-	margin-top: 45px;
+	height: 100%;
+	z-index: -1;
 }
 .title{
-	position: absolute;
-	margin-top: 150px;
-	left: 15%;
+	margin-top: 100px;
+	text-align: center;
 	height: 27px;
 	font-size: 18px;
 	font-family: Roboto-Regular, Roboto;
@@ -57,8 +64,7 @@ img{
 	font-weight: 500;
 	color: #DEBB81;
 	line-height: 21px;
-	position: absolute;
-	margin-top: 175px;
-	left: 15.5%;
+	margin-left: 15.5%;
+	margin-top: 5px;
 }
 }

@@ -3,39 +3,45 @@
     padding: 0;
     box-sizing: border-box;
 }
-/deep/.van-nav-bar{
-	background-color:#2B2A28 ;
+.header{
+	width: 100vw;
 	position: fixed;
 	top: 0;
-	width: 100%;
-	
-}
-/deep/.van-nav-bar .van-icon{
-	color: #DEBB81;
-	font-size: 24px;
-}
-/deep/.van-nav-bar__title{
-	color:  #DEBB81;
-}
-/deep/.van-nav-bar{
-	background: #2B2A28;
-}
-/deep/.van-hairline--bottom::after {
-	border-bottom-width: 0px!important;
+	margin-top: 0px;
+	z-index: 100;
+	/deep/.van-nav-bar{
+		background: #2B2A28;
+	}
+	/deep/.van-hairline--bottom::after {
+		border-bottom-width: 0px!important;
+	}
+	/deep/.van-nav-bar__content{
+		background: #2B2A28;
+		color: #DEBB81!important;
+		.van-nav-bar__title{
+			color: #DEBB81!important;
+		}
+		.van-icon{
+			font-size: 24px;
+			color: #DEBB81!important;
+		}
+	}
 }
 .introduce-bg{
 	width: 100vw;
+	margin-top: 46px;
+	position: relative;
+	margin-bottom: 20px;
 	img{
 		position: absolute;
 		left: 0;
 		width: 100vw;
 		z-index: -1;
-		background: cover;
-		margin-top: 20px;
+		height: 100%;
 	}
 	.container-box{
 		height: 100vh;
-		padding: 130px 35px 60px 45px;
+		padding: 105px 35px 60px 45px;
 		.container-text{
 			display: flex;
 			justify-content: center;
