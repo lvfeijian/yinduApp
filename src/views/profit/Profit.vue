@@ -12,7 +12,7 @@
     <div class="bg">
       <div style="height:0px;">&nbsp;</div>
       <div class="card">
-        <img src="../../assets//img/profit/积分.png" alt="" />
+        <img src="../../assets/img/profit/1.png" alt="" />
         <p class="earning">MY EARNINGS</p>
         <div class="price">₹{{task_earnings}}</div>
       </div>
