@@ -75,7 +75,7 @@
 				}).then(res => {
 					if(res.code == 1){
 						this.freeData = res.data
-						if(res.data && res.data.is_finish>0){
+						if(res.data && res.data.is_finish==0){
 							this.isShowDialog = true
 						}
 					}

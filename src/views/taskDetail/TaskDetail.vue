@@ -77,7 +77,7 @@
 				}).then(res => {
 					if(res.code == 1){
 						this.videoInfo = res.data
-						if(res.data && res.data.vip_type == 1 && res.data.is_vip == 1 && res.data.is_finish>0){
+						if(res.data && res.data.vip_type == 1 && res.data.is_vip == 1 && res.data.is_finish==0){
 							this.isShowDialog = true
 						}
 					}
