@@ -13,7 +13,7 @@
       <van-list
         v-model="loading"
         :finished="finished"
-        finished-text="没有更多了"
+        finished-text="no more"
         @load="onLoad"
       >
         <div class="item" v-for="(item,index) in noticeListData" :key="index" @click="handleDetail(item.id)">

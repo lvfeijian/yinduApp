@@ -1,6 +1,6 @@
 <!-- Home -->
 <template>
-	<div class="free">
+	<div class="free" v-if="freeData" :class="freeData.type == 0 ? 'active' : ''">
 		<div class="header">
       <van-nav-bar
         title="FREE MISSION"

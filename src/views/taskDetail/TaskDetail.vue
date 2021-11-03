@@ -1,6 +1,6 @@
 <!-- Home -->
 <template>
-	<div class="task_detail">
+	<div class="task_detail" v-if="videoInfo" :class="videoInfo.type == 0 ? 'active' : ''">
 		<div class="header">
       <van-nav-bar
         :title="videoInfo && videoInfo.title"
