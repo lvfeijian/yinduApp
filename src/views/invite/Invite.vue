@@ -104,7 +104,7 @@
     methods: {
 			handleCopy(){
 				let userInfo = JSON.parse(localStorage.getItem('userInfo'))
-				let inviteUrl = window.location.host + '/register?code=' + userInfo.code
+				let inviteUrl = window.location.protocol + '//'+ window.location.host + '/register?code=' + userInfo.code
         this.copy(inviteUrl)
       },
       copy(data) {
