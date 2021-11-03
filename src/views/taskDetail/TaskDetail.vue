@@ -90,7 +90,9 @@
 				this.isShowDialog = false
 			},
 			handleBtn(){
-				this.$refs.video.play()
+				if(this.videoInfo.type == 1){
+					this.$refs.video.play()
+				}
 				this.isShowDialog = false
 				this.isShowCountDown = true
 				this.timer = setInterval(() => {

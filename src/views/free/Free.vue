@@ -85,6 +85,9 @@
 				this.isShowDialog = false
 			},
 			handleBtn(){
+				if(this.freeData.type == 1){
+					this.$refs.video.play()
+				}
 				this.isShowDialog = false
 				this.isShowCountDown = true
 				this.timer = setInterval(() => {
