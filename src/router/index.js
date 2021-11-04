@@ -165,7 +165,7 @@ const routes = [
 ]
 const router = new VueRouter({
     routes,
-    mode:'history'
+    mode:'hash'
 })
 //路由导航守卫
 router.beforeEach((to,from,next) => {

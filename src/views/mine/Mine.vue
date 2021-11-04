@@ -76,6 +76,11 @@
         <div class="list_name">ONLINE SERVICE</div>
         <img class="jiantou" src="../../assets/img/mine/Combined Shape.png" alt="" />
       </div>
+      <div class="list_item">
+        <img class="icon" src="../../assets/img/mine/zaixiankefu2.png" alt="" />
+        <div class="list_name">ONLINE SERVICE</div>
+        <img class="jiantou" src="../../assets/img/mine/Combined Shape.png" alt="" />
+      </div>
       <div class="list_item" @click="golink('modifyPassword')">
         <img class="icon" src="../../assets/img/mine/xiugaimima.png" alt="" />
         <div class="list_name">CHANGE PASSWORD</div>
