@@ -98,7 +98,7 @@
       </div>
     </div>
     <div class="exit" @click="exitSystem">
-      EXIT THE SYSTEM
+      EXIT
     </div>
     <Dialog @close="doClose" @handleBtn="handleBtn" :isShow="isShowDialog" type="1">
       Copy succeeded
