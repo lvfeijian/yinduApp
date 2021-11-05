@@ -32,6 +32,12 @@
 			<div>YOU ARE NOT <br>
 				YET A VIP</div>
     </Dialog>
+		<div class="dialog1" v-if="isShowSpringFrame">
+			<div class="dialog_cont">
+				<img class="close" @click="handleClose" src="../../assets/img/close.png" alt="" />
+				<div class="text">{{loginRemindText}}</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -39,7 +45,8 @@
 	import Vue from 'vue';
 	import {
 		getSwiperList,
-		noticeListApi
+		noticeListApi,
+		loginRemindApi
 	} from '@/network/home'
 	import {
     getUserInfo
@@ -76,7 +83,9 @@
 				bannerImg: [],
 				noticeData: [],
 				is_vip: 0,
-				isShowDialog: false
+				isShowDialog: false,
+				isShowSpringFrame: false,
+				loginRemindText: ''
 			};
 		},
 
@@ -85,6 +94,18 @@
 		},
 
 		computed: {},
+		created(){
+			loginRemindApi().then(res => {
+				if(res.code == 1){
+					this.loginRemindText = res.data.remind
+					let nowTime = Date.parse(new Date())/1000
+					let showTime = localStorage.getItem('remindShowTime')*1
+					if(this.loginRemindText != '' && showTime < nowTime){
+						this.isShowSpringFrame = true
+					}
+				}
+			})
+		},
 		mounted() {
 			this.getNoticeList()
 			getSwiperList().then(res => {
@@ -143,6 +164,11 @@
 			handleBtn(){
 				this.isShowDialog = false
 				this.$router.push('/member')
+			},
+			handleClose(){
+				this.isShowSpringFrame = false
+				let time = Date.parse(new Date())/1000 + 24*60*60
+				localStorage.setItem('remindShowTime', time)
 			}
 		}
 	}

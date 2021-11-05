@@ -34,6 +34,13 @@ export function getBankCard(params){
         params
     })
 }
+// 获取客服链接
+export function getChatUrl(){
+    return request({
+        url: 'api/index/chatUrl',
+        method: 'get',
+    })
+}
 
 // 我的团队接口
 export function userTeam(data){

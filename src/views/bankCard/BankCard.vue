@@ -14,6 +14,8 @@
       <input type="text" v-model="branch_name" placeholder="BRANCH NAME">
       <input type="number" v-model="account_no" placeholder="ACCOUNT NO.">
       <input type="text" v-model="ifsc_code" placeholder="IFSC CODE">
+      <input type="number" v-model="phone" placeholder="phone">
+      <input type="text" v-model="email" placeholder="email">
     </div>
     <div class="ok" @click="submit">CONFIRM</div>
     <!-- <toast msg="msg" isshow="true"></toast> -->
@@ -40,6 +42,8 @@ import {
         branch_name: null,
         account_no: null,
         ifsc_code: null,
+        phone: null,
+        email: null,
         isShowDialog: false,
         type: 1,
         message: ''
@@ -65,7 +69,9 @@ import {
           bank_name: this.bank_name,
           branch_name: this.branch_name,
           account_no: this.account_no,
-          ifsc_code: this.ifsc_code
+          ifsc_code: this.ifsc_code,
+          phone: this.phone,
+          email: this.email
         }).then(res => {
           if(res.code == 1){
             this.type = 1
@@ -83,9 +89,7 @@ import {
         this.$router.push('card')
       },
       onClickLeft(){
-        this.$router.push({
-          path: 'mine'
-        })
+        this.$router.go(-1)
       }
     }
   }

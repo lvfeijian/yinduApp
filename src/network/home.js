@@ -51,4 +51,14 @@ export function vipOrderApi(params){
     })
 }
 
+// 登录页弹窗提醒接口
+export function loginRemindApi(){
+    return request({
+        url: 'api/index/loginRemind',
+        method: 'get',
+    })
+}
+
+
+
 

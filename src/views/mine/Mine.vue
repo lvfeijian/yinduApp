@@ -71,12 +71,12 @@
         <div class="list_name">APP DOWNLOAD</div>
         <img class="jiantou" src="../../assets/img/mine/Combined Shape.png" alt="" />
       </div>
-      <div class="list_item">
+      <div class="list_item" @click="goService1">
         <img class="icon" src="../../assets/img/mine/zaixiankefu.png" alt="" />
         <div class="list_name">ONLINE SERVICE</div>
         <img class="jiantou" src="../../assets/img/mine/Combined Shape.png" alt="" />
       </div>
-      <div class="list_item">
+      <div class="list_item" @click="goService2">
         <img class="icon" src="../../assets/img/mine/zaixiankefu2.png" alt="" />
         <div class="list_name">ONLINE SERVICE</div>
         <img class="jiantou" src="../../assets/img/mine/Combined Shape.png" alt="" />
@@ -109,10 +109,13 @@
 <script>
   import Vue from 'vue';
 	import Dialog from '@/components/common/dialog/Dialog'
+	import { Toast } from 'vant';
+	Vue.use(Toast);
 
   import {
     getUserInfo,
-    getBankCard
+    getBankCard,
+    getChatUrl
   } from '@/network/mine'
   export default {
     data() {
@@ -120,6 +123,7 @@
         userInfo: null,
         bankCardInfo: null,
 				isShowDialog: false,
+        chatUrl: null
       };
     },
 
@@ -130,6 +134,11 @@
     computed: {},
     created(){
       // this.handleUserInfo()
+      getChatUrl().then(res => {
+        if(res.code == 1){
+          this.chatUrl = res.data
+        }
+      })
       getBankCard().then(res => {
         if(res.code == 1){
           this.bankCardInfo = res.data
@@ -214,6 +223,20 @@
       },
       handleBtn(){
         this.isShowDialog = false
+      },
+      goService1(){
+        if(this.chatUrl.url1 == ''){
+          Toast( 'no service');
+          return
+        }
+        window.location.href = this.chatUrl.url1
+      },
+      goService2(){
+        if(this.chatUrl.url2 == ''){
+          Toast( 'no service');
+          return
+        }
+        window.location.href = this.chatUrl.url2
       }
     }
   }

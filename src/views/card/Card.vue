@@ -14,6 +14,7 @@
       <img class="card_img" src="../../assets/img/card/card.png" alt="" />
       <div class="bank_name">{{bankCardInfo.bank_name}}</div>
       <div class="bank_number">****  ****  ****  {{bankCardInfo.account_no.slice(-4)}}</div>
+      <div class="change" @click="handleChange">CHANGE</div>
     </div>
   </div>
 </template>
@@ -50,6 +51,9 @@ import {
     methods: {
       onClickLeft(){
         this.$router.push('/mine')
+      },
+      handleChange(){
+        this.$router.push('/bankCard')
       }
     }
   }

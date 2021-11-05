@@ -81,3 +81,46 @@ margin: 0 18px;
 		height:100%;
 	}
 }
+.dialog1{
+	width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(43, 42, 40, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .dialog_cont{
+    width: 264px;
+    height: 246px;
+    background: #FFFFFF;
+    border-radius: 19px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    .close{
+      width: 12px;
+      height: 12px;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+    .text{
+			position: relative;
+			font-size: 18px;
+			width: 100%;
+			margin-top: 50px;
+			overflow:hidden;
+			text-overflow: ellipsis;
+			display:-webkit-box;
+			-webkit-line-clamp:7;//块元素显示的文本行数
+			-webkit-box-orient:vertical;
+			word-break:break-all;
+			line-height: 22px;
+			padding: 0 14px;
+		}
+	}
+}
