@@ -9,6 +9,7 @@
     <input class="pwdInput" type="password" v-model="password" placeholder="PASSWORD" maxlength="18">
     <div class="login_btn" @click="handleLogin">PASSWORD</div>
     <div class="switch" @click="goLink">REGISTERED ACCOUNT</div>
+    <div class="tips">IF YOU FORGET YOUR PASSWORD, <br>PLEASE CONTACT THE STAFF</div>
   </div>
 </template>
 

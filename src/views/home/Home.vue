@@ -55,12 +55,14 @@
 		NoticeBar,
 		Swipe,
 		SwipeItem ,
-		Lazyload
+		Lazyload,
+		Toast
 	} from 'vant';
 	Vue.use(NoticeBar);
 	Vue.use(Swipe);
 	Vue.use(SwipeItem);
 	Vue.use(Lazyload);
+	Vue.use(Toast);
 	import Dialog from '@/components/common/dialog/Dialog'
 
 	export default {
@@ -85,7 +87,8 @@
 				is_vip: 0,
 				isShowDialog: false,
 				isShowSpringFrame: false,
-				loginRemindText: ''
+				loginRemindText: '',
+				user_status: 0
 			};
 		},
 
@@ -117,6 +120,7 @@
 				if(res.code == 1){
 					localStorage.setItem('userInfo',JSON.stringify(res.data))
 					this.is_vip = res.data.is_vip
+					this.user_status = res.data.user_status
 				}
 			})
 		},
@@ -134,6 +138,10 @@
 			onItemBanner: function(path){
 				if(this.is_vip == 0 && path == 'task'){
 					this.isShowDialog = true
+					return
+				}
+				if(this.user_status == 1 && path == 'task'){
+					Toast('Task collection failed')
 					return
 				}
 				this.$router.push({

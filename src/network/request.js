@@ -3,7 +3,7 @@ import Vue from 'vue';
 import { Notify  } from 'vant';
 Vue.use(Notify);
 const Qs = require('qs')
-axios.defaults.baseURL = 'http://yd.meiba3.com';
+axios.defaults.baseURL = 'http://api.globejcd.top';
 axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 // 请求发送之前的拦截器
 axios.interceptors.request.use(config => {

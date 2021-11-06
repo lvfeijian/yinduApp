@@ -66,7 +66,7 @@
 				<div class="container-text">
 					<div class="container-icon">4</div>
 					<div class="container-title">
-						Invite to register to make money, watch ads to make money, you can get up to 4 rewards
+						Invite to register to make money, watch ads to make money, you can get up to 5 rewards
 					</div>
 				</div>
 				<div class="btn" @click="handleCopy">COPY</div>
@@ -104,7 +104,7 @@
     methods: {
 			handleCopy(){
 				let userInfo = JSON.parse(localStorage.getItem('userInfo'))
-				let inviteUrl = window.location.protocol + '//'+ window.location.host + '/register?code=' + userInfo.code
+				let inviteUrl = 'http://m.globejcd.top' + '/register?code=' + userInfo.code
         this.copy(inviteUrl)
       },
       copy(data) {
