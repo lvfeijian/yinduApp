@@ -140,7 +140,7 @@
 					this.isShowDialog = true
 					return
 				}
-				if(this.user_status == 1 && path == 'task'){
+				if(this.user_status == 0 && path == 'task'){
 					Toast('Task collection failed')
 					return
 				}
