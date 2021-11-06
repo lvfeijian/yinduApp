@@ -78,6 +78,14 @@ export function userRetailApi(params){
     })
 }
 
+export function downloadApi(){
+    return request({
+        url: 'api/index/download',
+        method: 'post',
+    })
+}
+
+
 
 
 

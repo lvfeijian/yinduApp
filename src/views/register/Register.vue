@@ -11,7 +11,7 @@
     <input class="code" ref="code" type="text" v-model="code" placeholder="INVITATION CODE">
     <div class="register_btn" @click="handleRegister">REGISTER</div>
     <div class="switch" @click="goLink">REGISTERED ACCOUNT</div>
-    <div class="down_app">DOWNLOAD&nbsp;&nbsp;APP</div>
+    <div class="down_app" @click="goDownload">DOWNLOAD&nbsp;&nbsp;APP</div>
   </div>
 </template>
 
@@ -84,6 +84,11 @@ export default {
     goLink(){
       this.$router.push({
         path: '/login'
+      })
+    },
+    goDownload(){
+      this.$router.push({
+        path: '/appDownload'
       })
     }
   }

@@ -174,7 +174,7 @@ router.beforeEach((to,from,next) => {
     //     const scrollTop = list ? list.scrollTop : 0;
     //     from.meta.scrollTop = scrollTop;
     // }
-    if(to.path === '/login' || to.path === '/404' || to.path=== '/register') return next()
+    if(to.path === '/login' || to.path === '/404' || to.path=== '/register' || to.path === '/appDownload') return next()
     const token = window.localStorage.getItem('token')
     if(!token)
     return next('/login')
