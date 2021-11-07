@@ -49,7 +49,8 @@
 		loginRemindApi
 	} from '@/network/home'
 	import {
-    getUserInfo
+    getUserInfo,
+		downloadApi
   } from '@/network/mine'
 	import {
 		NoticeBar,
@@ -98,8 +99,15 @@
 
 		computed: {},
 		created(){
+			alert(!!navigator.userAgent.match(/citicbankmobile/i));
+			downloadApi().then(res => {
+        if(res.code == 1){
+          // this.androidUrl = res.data.android || ''
+          // this.iosUrl = res.data.ios || ''
+        }
+      })
 			loginRemindApi().then(res => {
-				if(res.code == 1){
+				if(res.code == 1){	
 					this.loginRemindText = res.data.remind
 					let nowTime = Date.parse(new Date())/1000
 					let showTime = localStorage.getItem('remindShowTime')*1
