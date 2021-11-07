@@ -15,6 +15,7 @@
         :finished="finished"
         finished-text="no more"
         @load="onLoad"
+        loading-text="loading..."
       >
         <div class="item" v-for="(item,index) in noticeListData" :key="index" @click="handleDetail(item.id)">
           <div class="name">{{item.title}}</div>

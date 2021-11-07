@@ -38,6 +38,12 @@
 				<div class="text">{{loginRemindText}}</div>
 			</div>
 		</div>
+		<div class="Version_cover" v-if="VersionFlag">
+      <div class="center_box">
+        <h1>New version</h1>
+        <div class="btn" @click="Upgrade">Update download</div>
+      </div>
+    </div>
 	</div>
 </template>
 
@@ -65,7 +71,7 @@
 	Vue.use(Lazyload);
 	Vue.use(Toast);
 	import Dialog from '@/components/common/dialog/Dialog'
-
+	import config from '../../../package.json'
 	export default {
 		data() {
 			return {
@@ -89,7 +95,11 @@
 				isShowDialog: false,
 				isShowSpringFrame: false,
 				loginRemindText: '',
-				user_status: 0
+				user_status: 0,
+				VersionFlag: false,
+				androidUrl: '',
+				iosUrl: '',
+				version: '', // 最新版本
 			};
 		},
 
@@ -99,13 +109,29 @@
 
 		computed: {},
 		created(){
-			alert(!!navigator.userAgent.match(/citicbankmobile/i));
 			downloadApi().then(res => {
         if(res.code == 1){
-          // this.androidUrl = res.data.android || ''
-          // this.iosUrl = res.data.ios || ''
+          this.androidUrl = res.data.android || ''
+          this.iosUrl = res.data.ios || ''
+					this.version = res.data.version
+					if(plus){
+						if(plus.runtime.version == this.version){
+							// 是最新版本
+						} else {
+							this.VersionFlag = true
+						}
+					}
+					
         }
       })
+			// 移动端
+			
+			if(!!u.match(/AppleWebKit.*Mobile.*/)){
+
+			} else {
+				
+			}
+			
 			loginRemindApi().then(res => {
 				if(res.code == 1){	
 					this.loginRemindText = res.data.remind
@@ -185,6 +211,27 @@
 				this.isShowSpringFrame = false
 				let time = Date.parse(new Date())/1000 + 24*60*60
 				localStorage.setItem('remindShowTime', time)
+			},
+			Upgrade(){
+				let u = navigator.userAgent
+				if(u.indexOf('Android') > -1 || u.indexOf('Adr') > -1){
+					//android终端
+					if(this.androidUrl == ''){
+						Toast('Coming soon')
+						return
+					}
+					plus.runtime.openURL(this.androidUrl)
+					// window.open(this.androidUrl)
+				}
+				if(userAgent.indexOf('iPhone') > -1){
+					// 是否为iPhone或者QQHD浏览器
+					if(this.iosUrl == ''){
+						Toast('Coming soon')
+						return
+					}
+					plus.runtime.openURL(this.iosUrl)
+					// window.open(this.iosUrl)
+				}
 			}
 		}
 	}

@@ -24,6 +24,7 @@
         :finished="finished"
         finished-text="no more"
         @load="onLoad"
+        loading-text="loading..."
       >
         <div class="item" v-for="(item,index) in earningList" :key="index">
           <div class="cont">

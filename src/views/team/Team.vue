@@ -30,6 +30,7 @@
           :finished="finished"
           finished-text="no more"
           @load="onLoad"
+          loading-text="loading..."
         >
           <div class="table_item" v-for="(item,index) in teamList" :key="index">
             <div class="level">

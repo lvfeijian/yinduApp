@@ -16,6 +16,7 @@
         :finished="finished"
         finished-text="no more"
         @load="onLoad"
+        loading-text="loading..."
       >
         <div class="item" v-for="(item,index) in retailList" :key="index">
           <div class="cont">
