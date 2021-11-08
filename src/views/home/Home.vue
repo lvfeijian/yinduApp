@@ -213,25 +213,25 @@
 				localStorage.setItem('remindShowTime', time)
 			},
 			Upgrade(){
-				let u = navigator.userAgent
-				if(u.indexOf('Android') > -1 || u.indexOf('Adr') > -1){
-					//android终端
-					if(this.androidUrl == ''){
-						Toast('Coming soon')
-						return
-					}
-					plus.runtime.openURL(this.androidUrl)
-					// window.open(this.androidUrl)
-				}
-				if(userAgent.indexOf('iPhone') > -1){
-					// 是否为iPhone或者QQHD浏览器
-					if(this.iosUrl == ''){
-						Toast('Coming soon')
-						return
-					}
-					plus.runtime.openURL(this.iosUrl)
-					// window.open(this.iosUrl)
-				}
+				// let u = navigator.userAgent
+				window.location.href=this.androidUrl || this.iosUrl
+				// if(u.indexOf('Android') > -1 || u.indexOf('Adr') > -1){
+				// 	//android终端
+				// 	if(this.androidUrl == ''){
+				// 		Toast('Coming soon')
+				// 		return
+				// 	}
+				// 	// plus.runtime.openURL(this.androidUrl)
+				// }
+				// if(userAgent.indexOf('iPhone') > -1){
+				// 	// 是否为iPhone或者QQHD浏览器
+				// 	if(this.iosUrl == ''){
+				// 		Toast('Coming soon')
+				// 		return
+				// 	}
+				// 	plus.runtime.openURL(this.iosUrl)
+				// 	// window.open(this.iosUrl)
+				// }
 			}
 		}
 	}
