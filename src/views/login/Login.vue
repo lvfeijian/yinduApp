@@ -59,6 +59,7 @@ export default {
       Toast.loading({
         message: 'login...',
         forbidClick: true,
+        duration: 10000
       });
       userLogin({
         phone: this.phone,

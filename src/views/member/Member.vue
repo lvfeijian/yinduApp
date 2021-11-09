@@ -147,6 +147,7 @@
 				Toast.loading({
 					message: 'loading...',
 					forbidClick: true,
+					duration: 10000
 				});
 				vipPayApi({
 					id,
