@@ -124,14 +124,6 @@
 					
         }
       })
-			// 移动端
-			
-			if(!!u.match(/AppleWebKit.*Mobile.*/)){
-
-			} else {
-				
-			}
-			
 			loginRemindApi().then(res => {
 				if(res.code == 1){	
 					this.loginRemindText = res.data.remind

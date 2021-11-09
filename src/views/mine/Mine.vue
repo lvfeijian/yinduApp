@@ -50,7 +50,7 @@
       </div>
       <div class="item" @click="golink('wallet')">
         <div class="icon">
-          <img src="@/assets/img/mine/tuandui.png" alt="" />
+          <img src="@/assets/img/mine/qianbao.png" alt="" />
         </div>
         <p>WALLET</p>
       </div>

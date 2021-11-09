@@ -10,6 +10,7 @@
     <div class="login_btn" @click="handleLogin">PASSWORD</div>
     <div class="switch" @click="goLink">REGISTERED ACCOUNT</div>
     <div class="tips">IF YOU FORGET YOUR PASSWORD, <br>PLEASE CONTACT THE STAFF</div>
+      
   </div>
 </template>
 
@@ -18,13 +19,15 @@ import Vue from 'vue';
 import {
   userLogin
 } from '@/network/login'
-import { Notify  } from 'vant';
+import { Notify ,Toast } from 'vant';
 Vue.use(Notify);
+Vue.use(Toast);
 export default {
   data () {
     return {
       phone: '',
-      password: ''
+      password: '',
+      loading: false,
     }
   },
 
@@ -53,6 +56,10 @@ export default {
         Notify({ type: 'danger', message: 'password length is greater than 6 digits' });
         return
       }
+      Toast.loading({
+        message: 'login...',
+        forbidClick: true,
+      });
       userLogin({
         phone: this.phone,
         password: this.password
@@ -60,6 +67,7 @@ export default {
         if(res.code == 1){
           localStorage.setItem('token', res.data.token)
           this.$router.push('/home')
+          Toast.clear();
         }
       })
       // this.$router.push({

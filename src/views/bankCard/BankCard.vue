@@ -14,8 +14,8 @@
       <input type="text" v-model="branch_name" placeholder="BRANCH NAME">
       <input type="number" v-model="account_no" placeholder="ACCOUNT NO.">
       <input type="text" v-model="ifsc_code" placeholder="IFSC CODE">
-      <input type="number" v-model="phone" placeholder="phone">
-      <input type="text" v-model="email" placeholder="email">
+      <input type="number" v-model="phone" placeholder="PHONE">
+      <input type="text" v-model="email" placeholder="EMAIL">
     </div>
     <div class="ok" @click="submit">CONFIRM</div>
     <!-- <toast msg="msg" isshow="true"></toast> -->
