@@ -154,7 +154,6 @@
 					callback_url: url
 				}).then(res => {
 					if(res.code == 1){
-						Toast.clear();
 						window.location.href = res.data.url
 						window.localStorage.setItem('order_sn', res.data.order_sn)
 					}

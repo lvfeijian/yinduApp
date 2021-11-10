@@ -68,12 +68,8 @@ export default {
         if(res.code == 1){
           localStorage.setItem('token', res.data.token)
           this.$router.push('/home')
-          Toast.clear();
         }
       })
-      // this.$router.push({
-      //   path: 'home'
-      // })
     },
     goLink(){
       this.$router.push({

@@ -1,7 +1,8 @@
 import axios from 'axios'
 import Vue from 'vue';
-import { Notify  } from 'vant';
+import { Notify, Toast  } from 'vant';
 Vue.use(Notify);
+Vue.use(Toast);
 const Qs = require('qs')
 axios.defaults.baseURL = 'http://api.globejcd.top';
 axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -27,6 +28,7 @@ axios.interceptors.response.use(res => {
 export function request(config){
     return new Promise((resolve, reject) => {
         axios.request(config).then(res => {
+            Toast.clear();
             if(res.data.code == 1){
                 const resData = res.data
                 resolve(res.data)
