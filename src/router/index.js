@@ -38,7 +38,6 @@ const routes = [
         meta: {
             TabbarShow: true,
             keepAlive: true,
-            scrollTop: 0
         },
     },
     {
@@ -118,7 +117,6 @@ const routes = [
         component: () => import( '../views/announcement/Announcement'),
         meta: {
             keepAlive: true,
-            scrollTop: 0
         },
     },
     {

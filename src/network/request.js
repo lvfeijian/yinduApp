@@ -1,10 +1,14 @@
 import axios from 'axios'
 import Vue from 'vue';
-import { Notify, Toast  } from 'vant';
+import { Notify, Toast } from 'vant';
 Vue.use(Notify);
 Vue.use(Toast);
 const Qs = require('qs')
-axios.defaults.baseURL = 'http://api.globejcd.top';
+if (process.env.NODE_ENV === "development") {
+    axios.defaults.baseURL = 'http://yd.meiba3.com';
+} else {
+    axios.defaults.baseURL = 'http://api.globejcd.top';
+}
 axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 // 请求发送之前的拦截器
 axios.interceptors.request.use(config => {
@@ -25,16 +29,16 @@ axios.interceptors.response.use(res => {
     return Promise.reject(error)
 })
 
-export function request(config){
+export function request(config) {
     return new Promise((resolve, reject) => {
         axios.request(config).then(res => {
             Toast.clear();
-            if(res.data.code == 1){
+            if (res.data.code == 1) {
                 const resData = res.data
                 resolve(res.data)
-            } else if(res.data.code == 0) {
+            } else if (res.data.code == 0) {
                 Notify({ type: 'danger', message: res.data.msg });
-            } else if(res.data.code == '10001'){
+            } else if (res.data.code == '10001') {
                 window.localStorage.removeItem("token");
             }
         }, error => {
