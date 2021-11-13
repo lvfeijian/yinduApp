@@ -21,6 +21,10 @@
       </div>
       <div class="btn" @click="handleUserCash">WITHDRAW</div>
     </div>
+    <div class="rule_text">
+      EACH WITHDRAWAL FEE IS ₹10 + 5% OF THE
+      WITHDRAWAL AMOUNT
+    </div>
     <Dialog @close="doClose" @handleBtn="handleBtn" :isShow="isShowDialog" :type="type">
       {{message}}
     </Dialog>
@@ -29,9 +33,10 @@
 
 <script>
 import Vue from 'vue';
-import { NavBar, Field } from 'vant';
+import { NavBar, Field, Toast } from 'vant';
 Vue.use(NavBar);
 Vue.use(Field);
+Vue.use(Toast);
 import Dialog from '@/components/common/dialog/Dialog'
 
 import {
@@ -54,7 +59,7 @@ import {
 
     computed: {},
     created(){
-      this.balance = this.$route.query.balance
+      this.balance = this.$route.query.balance || 0
     },
     mounted() { 
     },
@@ -67,6 +72,10 @@ import {
         this.money = this.balance
       },
       handleUserCash(){
+        if(this.money < 120){
+          Toast('CASH AMOUNT IS GREATER THAN 120')
+          return
+        }
         userCashApi({
           amount: this.money
         }).then(res => {

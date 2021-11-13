@@ -8,7 +8,7 @@
     <input class="userInput" type="number" ref="phone" v-model="phone" @input="changeNumber" placeholder="PHONE NUMBER" maxlength="10">
     <input class="pwdInput" type="password" ref="password" v-model="password" placeholder="INPUT PASSWORD" maxlength="18">
     <input class="confirmPwdInput" type="password" v-model="confirmPassword" placeholder="CONFIRM PASSWORD" maxlength="18">
-    <input class="code" ref="code" type="text" v-model="code" placeholder="INVITATION CODE">
+    <input class="code" :disabled="isInvite" ref="code" type="text" v-model="code" placeholder="INVITATION CODE">
     <div class="register_btn" @click="handleRegister">REGISTER</div>
     <div class="switch" @click="goLink">REGISTERED ACCOUNT</div>
     <div class="down_app" @click="goDownload">DOWNLOAD&nbsp;&nbsp;APP</div>
@@ -30,7 +30,8 @@ export default {
         phone: '',
         password: '',
         confirmPassword: '',
-        code: ''
+        code: '',
+        isInvite: false
     }
   },
 
@@ -39,6 +40,9 @@ export default {
   computed: {},
   created(){
     this.code = this.$route.query.code || ''
+    if(this.code != ''){
+      this.isInvite = true
+    }
   },
   mounted() {
   },
@@ -70,6 +74,11 @@ export default {
         this.$refs.code.focus()
         return
       }
+      Toast.loading({
+        message: 'register...',
+        forbidClick: true,
+        duration: 10000
+      });
       userRegister({
         phone: this.phone,
         password: this.password,
@@ -78,6 +87,7 @@ export default {
       }).then(res => {
         if(res.code == 1){
           this.$router.push('/login')
+          Toast('Register success, Please login');
         }
       })
     },
