@@ -77,10 +77,11 @@
 			},
 			doClose(){
 				this.isShowDialog = false
+				this.$router.replace('/home')
 			},
 			handleBtn(){
 				this.isShowDialog = false
-				this.$router.push('/home')
+				this.$router.replace('/home')
 			}
 		}
 	}
