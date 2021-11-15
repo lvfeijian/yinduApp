@@ -43,6 +43,10 @@
 		computed: {},
 
 		mounted() {
+			let userInfo = JSON.parse(localStorage.getItem('userInfo'))
+			if(userInfo.user_status==0){
+				return this.isShowDialog = true
+			}
 			// 获取任务中心数据
 			getTaskList().then(res => {
 				if(res.code == 1){

@@ -203,6 +203,7 @@
       },
       exitSystem(){
         window.localStorage.removeItem("token");
+        localStorage.removeItem('userInfo')
         this.$router.push('login')
       },
       handleCopy(){

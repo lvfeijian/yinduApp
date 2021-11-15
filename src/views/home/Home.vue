@@ -171,10 +171,10 @@
 					this.isShowDialog = true
 					return
 				}
-				if(this.user_status == 0 && path == 'task'){
-					Toast('Task collection failed')
-					return
-				}
+				// if(this.user_status == 0 && path == 'task'){
+				// 	Toast('Task collection failed')
+				// 	return
+				// }
 				this.$router.push({
 					path
 				})
