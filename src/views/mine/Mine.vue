@@ -204,6 +204,7 @@
       exitSystem(){
         window.localStorage.removeItem("token");
         localStorage.removeItem('userInfo')
+        localStorage.removeItem('remindShowTime')
         this.$router.push('login')
       },
       handleCopy(){
