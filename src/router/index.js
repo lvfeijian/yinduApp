@@ -37,7 +37,6 @@ const routes = [
         component:Home,
         meta: {
             TabbarShow: true,
-            keepAlive: true,
         },
     },
     {
@@ -164,7 +163,7 @@ const routes = [
 const router = new VueRouter({
     routes,
     // 打包app时去掉mode
-    mode:'history'
+    // mode:'history'
 })
 //路由导航守卫
 router.beforeEach((to,from,next) => {

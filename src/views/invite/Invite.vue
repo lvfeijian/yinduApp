@@ -6,7 +6,8 @@
     </div>
   	<div class="introduce-bg">
   		<img src="../../assets/img/invite/bg.jpg" alt="">
-			<div class="container-box">
+			<div class="content" v-html="invitationData"></div>
+			<!-- <div class="container-box">
 				<div class="container-text one">
 					<div class="container-icon">1</div>
 					<div class="container-title">
@@ -70,7 +71,8 @@
 					</div>
 				</div>
 				<div class="btn" @click="handleCopy">COPY</div>
-			</div>
+			</div> -->
+			<div class="btn" @click="handleCopy">COPY</div>
 			<Dialog @close="doClose" @handleBtn="handleBtn" :isShow="isShowDialog" type="1">
 				Copy succeeded
 			</Dialog>
@@ -86,10 +88,14 @@
 		NavBar,
 	} from 'vant';
 	Vue.use(NavBar);
+	import {
+		invitationApi
+	} from '@/network/invite'
   export default {
     data() {
       return {
 				isShowDialog: false,
+				invitationData: ''
       };
     },
 
@@ -104,7 +110,13 @@
 				document.documentElement.scrollTop = 0
 			}
 		},
-    mounted() { },
+    mounted() {
+			invitationApi().then(res => {
+				if(res.code == 1){
+					this.invitationData = res.data.invitation
+				}
+			})
+		},
 
     methods: {
 			handleCopy(){
