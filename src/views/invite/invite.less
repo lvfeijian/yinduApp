@@ -29,9 +29,9 @@
 }
 .introduce-bg{
 	width: 100vw;
+	height: calc(100vh - 46px);
 	margin-top: 46px;
 	position: relative;
-	margin-bottom: 20px;
 	display: inline-block;
 	img{
 		position: absolute;
@@ -39,7 +39,6 @@
 		width: 100vw;
 		top: 0;
 		z-index: -1;
-		height: calc(100vh - 90px);
 	}
 	.btn{
 		width: 118px;
@@ -54,13 +53,36 @@
 		text-align: center;
 		margin-left: 50%;
 		transform: translateX(-50%);
-		margin-top: 8px;
+		margin-top: 20px;
 	}
 	.content{
-		margin: 90px 35px 0px 45px;
-		height: 410px;
+		margin: 110px 35px 0px 45px;
+		height: 450px;
 		box-sizing: border-box;
 		overflow-y: scroll;
+		font-size: 14px;
+		line-height: 20px;
+		/deep/table{
+			color: #DEBB81;
+			font-size: 12px!important;
+			transform: scale(0.8);
+			width: 360px;
+			margin-left: -35px;
+			border-collapse: collapse;
+			margin-top: -10px;
+			tr{
+				height: 22px;
+				td{
+					border:1px solid #DEBB81!important;
+					text-align: center;
+				}
+			}
+		}
+		/deep/img{
+			width: 100%!important;
+			height: 100%!important;
+			margin: auto;
+		}
 	}
 	.container-box{
 		height: 100vh;
@@ -111,20 +133,5 @@
 			margin-top: 30px;
 		}
 	}
-	table{
-		color: #DEBB81;
-		font-size: 12px;
-		transform: scale(0.8);
-		width: 360px;
-		margin-left: -35px;
-		border-collapse: collapse;
-		margin-top: -10px;
-		tr{
-			height: 22px;
-			td{
-				border:1px solid #DEBB81;
-				text-align: center;
-			}
-		}
-	}
+	
 }
