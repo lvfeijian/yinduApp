@@ -13,7 +13,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">登录</el-button>
-        <el-button type="info" @click="onReset">重置</el-button>
+        <el-button type="info" @click="onReset">重置001</el-button>
       </el-form-item>
     </el-form>
   </div>
